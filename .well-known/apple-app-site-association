@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["XXXXXXXXXX.com.luckyduck.pieminder"],
+        "components": [
+          {
+            "/": "/pieminder/*",
+            "comment": "Match any path under /pieminder/ — handles shared recipe links"
+          }
+        ]
+      }
+    ]
+  }
+}
