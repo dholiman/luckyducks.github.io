@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Privacy policy for PieMinder. PieMinder collects no data and uses no analytics or tracking." />
+  <meta name="theme-color" content="#EDE8E0" />
+  <title>Privacy Policy — PieMinder</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" href="assets/pizza.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ── Floating pill nav (kept in sync with index.html) ── -->
+  <nav class="floating-nav" id="nav" aria-label="Site navigation">
+    <a class="nav-brand" href="index.html">
+      <span class="nav-logo" aria-hidden="true"><img src="assets/pizza.png" alt="" /></span>
+      <span class="nav-brand-name">PieMinder <span class="brand-accent">Pro</span></span>
+    </a>
+    <div class="nav-actions">
+      <a class="nav-btn-web" href="../App/index.html">Use on the web</a>
+      <a class="nav-btn-app" href="https://apps.apple.com/app/idXXXXXXXXX" aria-label="Get PieMinder on the App Store">Get the App →</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="page-content wrap">
+      <a class="back-link" href="index.html">
+        <span aria-hidden="true">←</span> Back to PieMinder
+      </a>
+
+      <h1 class="display">Privacy <em>Policy</em></h1>
+      <p class="page-meta">Last updated · May 2026</p>
+
+      <h2>Overview</h2>
+      <p>PieMinder is a pizza dough calculator. It does not collect, transmit, or share any personal information.</p>
+
+      <h2>Data We Collect</h2>
+      <p><strong>Nothing.</strong> PieMinder does not collect any data about you or your device.</p>
+
+      <h2>How Your Data Is Stored</h2>
+      <p>Your calculator settings (number of pizzas, pizza size, crust thickness, hydration percentage) are saved <strong>locally on your device</strong> using Apple's standard UserDefaults storage. This data never leaves your device and is not accessible to the developer.</p>
+
+      <h2>In-App Purchases</h2>
+      <p>PieMinder offers optional tip jar purchases ($1–$5). All payment processing is handled entirely by Apple through the App Store. The developer does not have access to your payment information, Apple ID, or any transaction details beyond whether a purchase was completed.</p>
+
+      <h2>Analytics</h2>
+      <p>None. PieMinder contains no analytics, tracking SDKs, crash reporters, or advertising frameworks.</p>
+
+      <h2>Third-Party Services</h2>
+      <p>PieMinder uses no third-party services. The only network activity is StoreKit's connection to the App Store to load tip jar pricing — this is handled entirely by Apple.</p>
+
+      <h2>Notifications</h2>
+      <p>If you opt in to timer notifications during the onboarding flow, PieMinder schedules local notifications on your device to remind you when dough timers complete. These notifications are scheduled and delivered entirely on-device by iOS. No notification content is sent through any external server.</p>
+
+      <h2>Children's Privacy</h2>
+      <p>PieMinder does not collect data from anyone, including children under 13. The app is rated 4+ on the App Store.</p>
+
+      <h2>Changes to This Policy</h2>
+      <p>If this policy ever changes, the updated version will be posted here with a new "Last updated" date. Given that the app collects no data, meaningful changes are unlikely.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about this privacy policy? Contact <strong>Dakota Holiman</strong> at <a href="mailto:hello@example.com">hello@example.com</a>.</p>
+      <p><em>Please update this email address before publishing.</em></p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-brand">
+        <span class="footer-brand-mark">PieMinder</span>
+        <span>· Made by Dakota Holiman · © 2026</span>
+      </span>
+      <span class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html">Support</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+      var update = function () {
+        if (window.scrollY > 24) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      };
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    })();
+  </script>
+</body>
+</html>

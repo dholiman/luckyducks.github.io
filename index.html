@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PieMinder — the pizza dough calculator for home bakers. Real-time ingredient amounts, a guided walkthrough, and Dynamic Island proofing timers." />
+  <meta name="theme-color" content="#EDE8E0" />
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="PieMinder Pro — Pizza Dough, Beautified" />
+  <meta property="og:description" content="Real-time pizza dough math. A guided walkthrough. Built-in proofing timers in the Dynamic Island. No ads or premium plans." />
+  <meta property="og:image"       content="assets/og-image.png" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="PieMinder Pro — Pizza Dough, Beautified" />
+  <meta name="twitter:description" content="Real-time pizza dough math. A guided walkthrough. Built-in proofing timers in the Dynamic Island." />
+  <meta name="twitter:image"      content="assets/og-image.png" />
+
+  <title>PieMinder Pro — Pizza Dough, Beautified</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" href="assets/pizza.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ── Floating pill nav ── -->
+  <nav class="floating-nav" id="nav" aria-label="Site navigation">
+    <a class="nav-brand" href="index.html">
+      <span class="nav-logo" aria-hidden="true"><img src="assets/pizza.png" alt="" /></span>
+      <span class="nav-brand-name">PieMinder <span class="brand-accent">Pro</span></span>
+    </a>
+    <div class="nav-actions">
+      <a class="nav-btn-web" href="../App/index.html">Use on the web</a>
+      <a class="nav-btn-app" href="https://apps.apple.com/app/idXXXXXXXXX" aria-label="Get PieMinder on the App Store">Get the App →</a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ╔══════════════════════════════════════════════════════════╗
+         ║  HERO                                                     ║
+         ╚══════════════════════════════════════════════════════════╝ -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-text">
+          <span class="eyebrow rise d1">Pizza Dough Calculator · iOS &amp; Web</span>
+          <h1 class="display hero-display rise d2">
+            Home pizza dough, <em class="hero-em-reveal">simplified.</em>
+          </h1>
+          <p class="hero-lead rise d3">
+            Built for home pizza makers who want to enjoy the process. Real-time ingredient math,
+            step-by-step walkthrough, timers that live in your Dynamic Island, and best of all
+            <strong class="hero-lead-accent">no ads or premium plans.</strong>
+          </p>
+          <div class="cta-row rise d4">
+            <a class="btn-web" href="../App/index.html">
+              <span class="btn-web-label">Use on the web</span>
+              <span class="btn-web-sub">with limited features</span>
+            </a>
+            <a class="btn-appstore" href="https://apps.apple.com/app/idXXXXXXXXX" aria-label="Download PieMinder on the App Store">
+              <svg class="btn-appstore-icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false" fill="currentColor">
+                <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+              </svg>
+              <span class="btn-appstore-text">
+                <span class="small">Download on the</span>
+                <span class="large">App Store</span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-strip">
+        <img src="assets/hero-strip.png" alt="PieMinder app screens" />
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════════╗
+         ║  FEATURES                                                 ║
+         ╚══════════════════════════════════════════════════════════╝ -->
+    <section class="features" id="features">
+      <div class="wrap">
+
+        <header class="features-intro">
+          <span class="eyebrow">What it does</span>
+          <h2 class="display features-h2">Built for the kitchen,<br>not the spreadsheet.</h2>
+        </header>
+
+        <!-- ── 01: text left, phones right. phone-left is in FRONT (second in DOM) ── -->
+        <article class="feature">
+          <div class="feature-text">
+            <div class="feature-heading">
+              <span class="feature-number">1.</span>
+              <h3>Real-time math, no decisions</h3>
+            </div>
+            <p>Adjust pizza count, size, thickness, hydration, and gluten preference. Flour, water, salt, yeast, olive oil, and sugar amounts update instantly (in both grams and ounces).</p>
+          </div>
+          <div class="feature-phones">
+            <img class="feature-img" src="assets/feature-01.png" alt="PieMinder calculator and ingredient screens" />
+          </div>
+        </article>
+
+        <!-- ── 02: text first in DOM (mobile top), phones below. On desktop: phones left, text right.
+              phone-right is in FRONT (second in DOM inside phone-pair) ── -->
+        <article class="feature feature-reverse">
+          <div class="feature-text">
+            <div class="feature-heading">
+              <span class="feature-number">2.</span>
+              <h3>Instructions simplified</h3>
+            </div>
+            <p>All-in-one screen or guided walkthrough, from chilling water to baking. Each step includes your calculated amounts, so you're free from the cross-reference nightmares.</p>
+          </div>
+          <div class="feature-phones">
+            <img class="feature-img" src="assets/feature-02.png" alt="PieMinder instructions and walkthrough screens" />
+          </div>
+        </article>
+
+        <!-- ── 03: text left, phones right. phone-left is in FRONT (second in DOM) ── -->
+        <article class="feature">
+          <div class="feature-text">
+            <div class="feature-heading">
+              <span class="feature-number">3.</span>
+              <h3>Timers that live where you look</h3>
+            </div>
+            <p>Mix and rest timers live in your Dynamic Island and on the lock screen. Time-sensitive notifications fire the moment your dough is ready, even with the app closed or after a 3-hour rest.</p>
+          </div>
+          <div class="feature-phones">
+            <img class="feature-img" src="assets/feature-03.png" alt="PieMinder timer and Dynamic Island screens" />
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ╔══════════════════════════════════════════════════════════╗
+         ║  CLOSING CTA                                              ║
+         ╚══════════════════════════════════════════════════════════╝ -->
+    <section class="closing-cta">
+      <div class="wrap">
+        <h2 class="display closing-h2"><em>Pizza night</em> just got a little easier.</h2>
+        <p class="closing-lead">
+          Free on the App Store. Optional tip jar if you want to say thanks,
+          no features hidden behind it.
+        </p>
+        <div class="cta-row closing-cta-row">
+          <a class="btn-web" href="../App/index.html">
+            <span class="btn-web-label">Use on the web</span>
+            <span class="btn-web-sub">with limited features</span>
+          </a>
+          <a class="btn-appstore" href="https://apps.apple.com/app/idXXXXXXXXX" aria-label="Download PieMinder on the App Store">
+            <svg class="btn-appstore-icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false" fill="currentColor">
+              <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/>
+            </svg>
+            <span class="btn-appstore-text">
+              <span class="small">Download on the</span>
+              <span class="large">App Store</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-brand">
+        <span class="footer-brand-mark">PieMinder <span class="brand-accent">Pro</span></span>
+        <span>· Made by Dakota Holiman · © 2026</span>
+      </span>
+      <span class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html">Support</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var features = document.querySelectorAll('.feature');
+      if (!window.IntersectionObserver) {
+        features.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      features.forEach(function (el) { observer.observe(el); });
+    })();
+  </script>
+</body>
+</html>

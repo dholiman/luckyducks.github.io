@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Support and frequently asked questions for PieMinder, the pizza dough calculator for home bakers." />
+  <meta name="theme-color" content="#EDE8E0" />
+  <title>Support — PieMinder</title>
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+  <link rel="apple-touch-icon" href="assets/pizza.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- ── Floating pill nav (kept in sync with index.html) ── -->
+  <nav class="floating-nav" id="nav" aria-label="Site navigation">
+    <a class="nav-brand" href="index.html">
+      <span class="nav-logo" aria-hidden="true"><img src="assets/pizza.png" alt="" /></span>
+      <span class="nav-brand-name">PieMinder <span class="brand-accent">Pro</span></span>
+    </a>
+    <div class="nav-actions">
+      <a class="nav-btn-web" href="../App/index.html">Use on the web</a>
+      <a class="nav-btn-app" href="https://apps.apple.com/app/idXXXXXXXXX" aria-label="Get PieMinder on the App Store">Get the App →</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <article class="page-content wrap">
+      <a class="back-link" href="index.html">
+        <span aria-hidden="true">←</span> Back to PieMinder
+      </a>
+
+      <h1 class="display"><em>Support</em></h1>
+      <p class="page-meta">Tips, troubleshooting, and how to get in touch.</p>
+
+      <h2>Frequently Asked Questions</h2>
+
+      <h3>Why are my ingredient amounts different from another recipe I've used?</h3>
+      <p>PieMinder uses baker's percentages calibrated for a consistent, home-baker-friendly dough. Every baker has a slightly different formula — the key is to find settings that work for your oven, your flour brand, and your taste, then save them.</p>
+
+      <h3>What does "hydration" mean?</h3>
+      <p>Hydration is the ratio of water to flour, expressed as a percentage. A 65% hydration dough (the default) is easy to work with and produces a classic chewy crust. Higher hydration (70–80%) creates a more open, airy crumb but is stickier and harder to shape. Lower hydration (60%) gives a crispier, denser result.</p>
+
+      <h3>Why does the app recommend 65% hydration?</h3>
+      <p>65% is a reliable starting point for most home ovens and all-purpose or bread flour. Once you're comfortable with the dough, try 68–72% for a more Neapolitan-style result.</p>
+
+      <h3>My dough is too sticky / too dry. What should I adjust?</h3>
+      <ul>
+        <li><strong>Too sticky</strong> — lower the hydration by 2–3%</li>
+        <li><strong>Too dry</strong> — raise the hydration by 2–3%</li>
+      </ul>
+      <p>Small adjustments make a big difference. The slider lets you fine-tune in 1% increments.</p>
+
+      <h3>What's the gluten-free mode?</h3>
+      <p>Gluten-free mode uses a separate flour formula and defaults to 75% hydration, which GF flour blends typically need to achieve a similar texture. You can adjust the hydration for your specific GF flour blend.</p>
+
+      <h3>Can I share my recipe with someone?</h3>
+      <p>Yes — tap "Share This Recipe" on the main screen. The link encodes all your current settings. When the recipient opens it, the calculator is already set to your exact recipe.</p>
+
+      <h3>The tip jar says I'm offline.</h3>
+      <p>The tip jar requires an internet connection to process payment through Apple. Your calculator settings and recipe still work fully offline.</p>
+
+      <h3>I made a tip purchase but nothing happened.</h3>
+      <p>If a purchase was charged, Apple will have a receipt in your purchase history (Settings → [Your Name] → Media &amp; Purchases). The tip is a one-time consumable — there's nothing to unlock in the app. If you believe there was an error, contact Apple Support at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+
+      <hr />
+
+      <h2>Contact</h2>
+      <p>Have a question not answered here, or found a bug? Email <a href="mailto:hello@example.com">hello@example.com</a>.</p>
+      <p><em>Please update this email address before publishing.</em></p>
+
+      <hr />
+
+      <h2>Version History</h2>
+
+      <h3>1.0 — Initial release</h3>
+      <ul>
+        <li>Pizza dough calculator with real-time ingredient updates</li>
+        <li>Gluten-free mode</li>
+        <li>10-step guided walkthrough</li>
+        <li>Share recipe as a link</li>
+        <li>In-app tip jar ($1–$5)</li>
+        <li>Universal app (iPhone + iPad)</li>
+        <li>Full dark mode support</li>
+        <li>Dynamic Island and lock-screen timers for the mix and rest steps</li>
+      </ul>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-brand">
+        <span class="footer-brand-mark">PieMinder</span>
+        <span>· Made by Dakota Holiman · © 2026</span>
+      </span>
+      <span class="footer-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="support.html">Support</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var nav = document.getElementById('nav');
+      if (!nav) return;
+      var update = function () {
+        if (window.scrollY > 24) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      };
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    })();
+  </script>
+</body>
+</html>
