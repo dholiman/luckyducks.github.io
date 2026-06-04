@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts." />
+  <meta name="theme-color" content="#EDE8E0" />
+  <!-- Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="PieMinder Pro — Pizza Dough Calculator" />
+  <meta property="og:description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts." />
+  <meta property="og:image"       content="https://dakotaholiman.com/pieminder/assets/web/og-image.png" />
+  <meta property="og:url"         content="https://dakotaholiman.com/pieminder/" />
+  <title>PieMinder — Pizza Dough Calculator</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/web/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/web/favicon-16.png" />
+  <link rel="apple-touch-icon"    href="assets/web/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fraunces (display serif, variable axes) + Inter (body) — matches the iOS app + marketing site. -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=59" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="app" id="app">
+
+    <!-- ── Header ── -->
+    <header class="header" role="banner">
+      <a href="../Landing/index.html" aria-label="home"  style="text-decoration: none;">
+        <div class="header-logo" aria-hidden="true"><img src="assets/icons/Pizza.png" alt="" width="56" height="56"></div>
+        <h1 class="header-title" style="width: 900px;">&#160;PieMinder <span class="header-title-accent" style="text-decoration: none;">Pro&#160;</span></h1>
+        <p class="header-tagline">Home pizza dough, simplified</p>
+      </a>
+    </header>
+
+    <main id="main-content">
+
+      <!-- ── Controls Card ── -->
+      <section class="card controls-card" aria-label="Pizza settings">
+
+        <!-- Number of Pizzas -->
+        <div class="control-section" aria-labelledby="qty-label">
+          <h2 class="card-title" id="qty-label">Number of Pizzas</h2>
+          <div class="stepper" role="group" aria-labelledby="qty-label">
+            <button
+              class="stepper-btn"
+              id="qty-dec"
+              aria-label="Decrease number of pizzas"
+              aria-controls="qty-display"
+            >
+              <svg width="18" height="3" viewBox="0 0 18 3" aria-hidden="true" focusable="false">
+                <rect x="0" y="0" width="18" height="3" rx="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+            <div class="stepper-display" aria-live="polite" aria-atomic="true">
+              <span class="stepper-value" id="qty-display">4</span>
+              <span class="stepper-unit">pizzas</span>
+            </div>
+            <button
+              class="stepper-btn"
+              id="qty-inc"
+              aria-label="Increase number of pizzas"
+              aria-controls="qty-display"
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+                <rect x="0" y="7.5" width="18" height="3" rx="1.5" fill="currentColor"/>
+                <rect x="7.5" y="0" width="3" height="18" rx="1.5" fill="currentColor"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="control-divider" aria-hidden="true"></div>
+
+        <!-- Thickness -->
+        <div class="control-section" aria-labelledby="thick-label">
+          <h2 class="card-title" id="thick-label">Thickness</h2>
+          <div
+            class="segmented"
+            role="radiogroup"
+            aria-labelledby="thick-label"
+            id="thickness-group"
+          >
+            <div class="seg-indicator" id="seg-indicator" aria-hidden="true"></div>
+            <button class="seg-btn" role="radio" aria-checked="false" data-value="thin" tabindex="-1">Thin</button>
+            <button class="seg-btn seg-btn--active" role="radio" aria-checked="true" data-value="regular" tabindex="0">Regular</button>
+            <button class="seg-btn" role="radio" aria-checked="false" data-value="thick" tabindex="-1">Thick</button>
+          </div>
+        </div>
+
+        <div class="control-divider" aria-hidden="true"></div>
+
+        <!-- Pizza Size -->
+        <div class="control-section" aria-labelledby="size-label">
+          <div class="card-row card-row--spread">
+            <h2 class="card-title" id="size-label">Pizza Size</h2>
+            <output class="card-value" id="size-output" for="size-slider">12"</output>
+          </div>
+          <div class="slider-wrap">
+            <div class="slider-track" aria-hidden="true">
+              <div class="slider-fill" id="size-fill"></div>
+            </div>
+            <div class="slider-thumb-el" id="size-thumb" aria-hidden="true"></div>
+            <input
+              type="range"
+              class="slider-native"
+              id="size-slider"
+              min="8"
+              max="20"
+              step="1"
+              value="12"
+              aria-labelledby="size-label"
+              aria-valuetext="12 inches"
+            />
+          </div>
+          <div class="slider-labels" aria-hidden="true">
+            <span>8"</span>
+            <span>14"</span>
+            <span>20"</span>
+          </div>
+        </div>
+
+        <div class="control-divider" aria-hidden="true"></div>
+
+        <!-- Hydration -->
+        <div class="control-section" aria-labelledby="hydration-label">
+          <div class="card-row card-row--spread">
+            <h2 class="card-title" id="hydration-label">Hydration</h2>
+            <output class="card-value" id="hydration-output" for="hydration-slider">65%</output>
+          </div>
+          <div class="slider-wrap">
+            <div class="slider-track" aria-hidden="true">
+              <div class="slider-fill" id="hydration-fill"></div>
+            </div>
+            <div class="slider-thumb-el" id="hydration-thumb" aria-hidden="true"></div>
+            <input
+              type="range"
+              class="slider-native"
+              id="hydration-slider"
+              min="60"
+              max="80"
+              step="1"
+              value="65"
+              aria-labelledby="hydration-label"
+              aria-valuetext="65 percent"
+            />
+          </div>
+          <div class="slider-labels" id="hydration-labels" aria-hidden="true">
+            <span>60%</span>
+            <span class="rec-middle" style="left:25%;transform:translateX(-50%)"><small class="rec-label" aria-hidden="true" style="visibility:hidden"> (recommended)</small>65%<small class="rec-label"> (recommended)</small></span>
+            <span>80%</span>
+          </div>
+        </div>
+
+        <div class="control-divider" aria-hidden="true"></div>
+
+        <!-- Gluten Free -->
+        <div class="control-row" aria-labelledby="gf-label">
+          <div>
+            <h2 class="card-title" id="gf-label">Gluten Free</h2>
+          </div>
+          <button
+            class="toggle"
+            id="gf-toggle"
+            role="switch"
+            aria-checked="false"
+            aria-labelledby="gf-label"
+          >
+            <span class="toggle-thumb" aria-hidden="true"></span>
+            <span class="sr-only">Toggle gluten free mode</span>
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ── Results ── -->
+      <section aria-labelledby="results-label">
+        <h2 class="sr-only" id="results-label">Recipe Results</h2>
+
+        <!-- Hero + Ingredient grid -->
+        <div class="hero-card" aria-live="polite" aria-atomic="true">
+          <p class="hero-label">Total Dough</p>
+          <p class="hero-value">
+            <span id="total-g">857</span><span class="hero-unit">g</span>
+          </p>
+          <p class="hero-sub" id="ball-weight">214g per ball · 7.6 oz</p>
+
+          <div id="large-batch-warning" class="bonus-tip" role="note" style="display:none; text-align:left">
+            <span class="bonus-tip__label"><img src="assets/icons/Whisk.png" alt="" class="tip-icon"> Woah, that's a big batch of dough!</span>
+            <p class="bonus-tip__text">Consider kneading by hand. Some mixers struggle with this much dough.</p>
+          </div>
+
+          <div
+            class="ingredient-grid"
+          role="list"
+          aria-label="Ingredient amounts"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div class="ingredient-card" role="listitem">
+            <span class="ingredient-icon" aria-hidden="true"><img src="assets/icons/Flour.png" alt=""></span>
+            <div class="ingredient-text">
+              <p class="ingredient-label">Flour</p>
+              <p class="ingredient-value"><span id="flour-g">501</span><span class="ingredient-unit">g</span></p>
+              <p class="ingredient-alt" id="flour-oz">17.7 oz</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card" role="listitem">
+            <span class="ingredient-icon" aria-hidden="true"><img src="assets/icons/Water.png" alt=""></span>
+            <div class="ingredient-text">
+              <p class="ingredient-label">Water</p>
+              <p class="ingredient-value"><span id="water-g">311</span><span class="ingredient-unit">g</span></p>
+              <p class="ingredient-alt" id="water-oz">11.0 oz</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card" role="listitem">
+            <span class="ingredient-icon" aria-hidden="true"><img src="assets/icons/Salt.png" alt=""></span>
+            <div class="ingredient-text">
+              <p class="ingredient-label">Salt</p>
+              <p class="ingredient-value"><span id="salt-g">12.5</span><span class="ingredient-unit">g</span></p>
+              <p class="ingredient-alt" id="salt-oz">0.4 oz</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card" role="listitem">
+            <span class="ingredient-icon" aria-hidden="true"><img src="assets/icons/Yeast.png" alt=""></span>
+            <div class="ingredient-text">
+              <p class="ingredient-label">Yeast</p>
+              <p class="ingredient-value"><span id="yeast-g">2.0</span><span class="ingredient-unit">g</span></p>
+              <p class="ingredient-alt" id="yeast-oz">0.1 oz</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card" role="listitem">
+            <span class="ingredient-icon" aria-hidden="true"><img src="assets/icons/Oil.png" alt=""></span>
+            <div class="ingredient-text">
+              <p class="ingredient-label">Olive Oil</p>
+              <p class="ingredient-value"><span id="oil-g">16.5</span><span class="ingredient-unit">g</span></p>
+              <p class="ingredient-alt" id="oil-oz">0.6 oz</p>
+            </div>
+          </div>
+
+          <div class="ingredient-card" role="listitem">
+            <span class="ingredient-icon" aria-hidden="true"><img src="assets/icons/Sugar3.png" alt=""></span>
+            <div class="ingredient-text">
+              <p class="ingredient-label">Sugar</p>
+              <p class="ingredient-value"><span id="sugar-g">12.5</span><span class="ingredient-unit">g</span></p>
+              <p class="ingredient-alt" id="sugar-oz">0.4 oz</p>
+            </div>
+          </div>
+          </div><!-- end ingredient-grid -->
+
+          <button class="share-btn" id="share-btn" aria-label="Share this recipe">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 11V2M6 5l3-3 3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 11v4a1 1 0 001 1h10a1 1 0 001-1v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Share This Recipe
+          </button>
+
+        </div><!-- end hero-card -->
+      </section>
+
+      <!-- ── Instructions ── -->
+      <section class="card method-card" aria-labelledby="method-label">
+        <h2 class="card-title" id="method-label">Instructions</h2>
+        <ol class="method-list" aria-label="Dough preparation steps">
+          <li><span>Cool <strong class="sv" id="sv-water"></strong> water to below 60°F (15°C)</span></li>
+          <li><span>Mix water + <strong class="sv" id="sv-yeast"></strong> active dry yeast until dissolved</span></li>
+          <li><span>Add <strong class="sv" id="sv-flour"></strong> flour + <strong class="sv" id="sv-oil"></strong> olive oil — mix for 2 minutes</span></li>
+          <li><span>Still on low, add <strong class="sv" id="sv-sugar"></strong> sugar + <strong class="sv" id="sv-salt"></strong> salt</span></li>
+          <li><span>Mix for 10 more minutes until smooth &amp; elastic</span></li>
+          <li><span>Cover with plastic wrap, rest 1–3 hours</span></li>
+          <li><span>Divide into <strong class="sv" id="sv-qty"></strong> balls (~<strong class="sv" id="sv-ball"></strong> each), shape + seal seam</span></li>
+          <li><span>Place in lightly oiled containers, cover tightly</span></li>
+          <li><span>Refrigerate 1–3 days (3 days is ideal)</span></li>
+          <li><span>Rest at room temp for 3–4 hours before baking</span></li>
+        </ol>
+
+        <div class="bonus-tip bonus-tip--accordion" role="button" tabindex="0" aria-expanded="false">
+          <span class="bonus-tip__label"><img src="assets/icons/Lightbulb.png" alt="" class="tip-icon"> Bake it like pizzeria<span class="bonus-tip__toggle" aria-hidden="true">+</span></span>
+          <p class="bonus-tip__text">Preheat a baking steel in your oven at <strong>525°F</strong> for at least 45 minutes. Bake for 6-8 minutes. Try switching to broil in the last minute or 2 for a charred, pizzeria-style top.</p>
+        </div>
+
+        <button class="walkthrough-btn" id="open-walkthrough" aria-haspopup="dialog">
+          <span>Walk Me Through It</span>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M3.5 9H14.5M14.5 9L10 4.5M14.5 9L10 13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </section>
+
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <p class="footer-credit">Built by <strong>Dakota Holiman</strong></p>
+      <button class="footer-tip-btn" id="open-tip-modal">
+        <span class="footer-tip-text">Buy me a slice</span>
+        <img src="assets/icons/Pizza.png" alt="" class="footer-tip-icon" aria-hidden="true">
+      </button>
+    </footer>
+
+  </div>
+
+  <!-- ── Venmo Tip Modal ── -->
+  <div id="tip-overlay" class="tip-overlay" role="dialog" aria-modal="true" aria-labelledby="tip-title" aria-hidden="true">
+    <div class="tip-modal">
+      <button class="tip-close" id="tip-close" aria-label="Close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </button>
+      <h2 class="tip-title" id="tip-title">That's very kind of you! 🍕</h2>
+      <p class="tip-subtitle">Scan to send a tip on Venmo</p>
+      <div class="tip-qr">
+        <img
+          src="assets/icons/Venmo-QR.jpg"
+          alt="Venmo QR code for @Dakota-Holiman"
+          width="220"
+          height="220"
+          style="width:100%;height:auto;"
+        />
+      </div>
+      <p class="tip-handle">@Dakota-Holiman</p>
+    </div>
+  </div>
+
+  <!-- ── Walkthrough Screen ── -->
+  <div id="walkthrough" class="walkthrough" role="dialog" aria-modal="true" aria-labelledby="wt-title" aria-hidden="true" tabindex="-1">
+    <div class="wt-inner">
+
+      <div class="wt-topbar">
+        <button class="wt-close" id="wt-close" aria-label="Close walkthrough">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="wt-dots" id="wt-dots" aria-hidden="true"></div>
+        <span class="wt-count" id="wt-count" aria-live="polite" aria-atomic="true">Step 1 of 10</span>
+      </div>
+
+      <div class="wt-slide" id="wt-slide">
+
+        <div class="wt-illustration" id="wt-illustration" aria-hidden="true"></div>
+
+        <div class="wt-card">
+          <div class="wt-content">
+            <h2 class="wt-title" id="wt-title"></h2>
+            <div class="wt-body" id="wt-body"></div>
+          </div>
+
+          <!-- Per-step timer slot — populated by JS for steps 5 and 6 only.
+               Idle: shows action button(s); running: shows countdown + cancel. -->
+          <div class="wt-timer" id="wt-timer" aria-live="polite"></div>
+
+          <div class="wt-nav">
+            <button class="wt-nav-btn wt-nav-btn--back" id="wt-back" aria-label="Previous step">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M11 3.5L6 9L11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Back
+            </button>
+            <button class="wt-nav-btn wt-nav-btn--next" id="wt-next" aria-label="Next step">
+              Next
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M7 3.5L12 9L7 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js?v=33"></script>
+</body>
+</html>

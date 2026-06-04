@@ -1,0 +1,1663 @@
+/* ============================================================
+   PieMinder Pro — Neumorphic Design System
+   WCAG 2.2 AA Compliant
+   ============================================================ */
+
+/* ── Design Tokens ── */
+:root {
+  /* Background */
+  --bg: #EDE8E0;
+
+  /* Type — display serif (Fraunces) + body sans (Inter). Display variation
+     settings tune Fraunces' optical-size, softness, and "wonk" axes for a
+     warm editorial feel at large sizes. WONK 0 keeps the alternate
+     character set off; flip to 1 for emphasized italics if ever desired. */
+  --font-display:     'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --font-display-vs:  "opsz" 144, "SOFT" 100, "WONK" 0;
+
+  /* Neumorphic Shadows — softened pass. Offsets and blurs cut ~30%, alpha
+     reduced on both light and dark tokens, so the cards feel lifted off
+     the surface without dominating. Matches the lightweight feel of the
+     iOS app's refreshed UI. */
+  --light: rgba(255, 255, 255, 0.78);
+  --dark:  rgba(162, 138, 104, 0.36);
+
+  --shadow-raised:
+    -5px -5px 14px var(--light),
+     5px  5px 16px var(--dark);
+
+  --shadow-raised-sm:
+    -3px -3px  9px var(--light),
+     3px  3px 10px var(--dark);
+
+  --shadow-inset:
+    inset -3px -3px 9px var(--light),
+    inset  3px  3px 9px var(--dark);
+
+  --shadow-inset-sm:
+    inset -2px -2px 5px var(--light),
+    inset  2px  2px 5px var(--dark);
+
+  --shadow-pressed:
+    inset -2px -2px 6px var(--light),
+    inset  2px  2px 6px var(--dark);
+
+  /* Typography — all contrast-checked against #EDE8E0 */
+  --text-primary:   #2A1F10; /* 13.4:1 ✓ */
+  --text-secondary: #6B5840; /*  5.1:1 ✓ */
+  --text-tertiary:  #7A6448; /*  4.7:1 ✓ — passes AA for all text sizes */
+  --text-accent:    #9B3600; /*  5.4:1 ✓ */
+
+  /* Accent gradient — used for fills & UI, not small text */
+  --accent-a: #C44D0C;
+  --accent-b: #E8783A;
+  --accent-gradient: linear-gradient(135deg, var(--accent-a), var(--accent-b));
+
+  /* White on accent-a contrast: 6.0:1 ✓ */
+  --text-on-accent: #FFFFFF;
+
+  /* Spacing */
+  --space-xs:  6px;
+  --space-sm:  12px;
+  --space-md:  20px;
+  --space-lg:  28px;
+  --space-xl:  40px;
+
+  /* Radii */
+  --radius-sm:  12px;
+  --radius-md:  20px;
+  --radius-lg:  28px;
+  --radius-full: 999px;
+
+  /* Motion */
+  --ease: cubic-bezier(0.34, 1.20, 0.64, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur-med:  220ms;
+}
+
+/* ── Reset & Base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden; /* prevent horizontal scroll flash during push animation */
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  min-height: 100dvh;
+  /* Subtle warm texture via gradient */
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(255,255,255,0.45) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 100%, rgba(196,77,12,0.06) 0%, transparent 50%);
+}
+
+/* ── Accessibility Utilities ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  background: var(--text-primary);
+  color: #FFFFFF;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 1000;
+  transition: top var(--dur-fast) ease;
+}
+.skip-link:focus {
+  top: var(--space-md);
+}
+
+/* Focus visible ring — visible on keyboard, hidden on mouse */
+:focus-visible {
+  outline: 3px solid var(--accent-a);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── App Shell ── */
+.app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: var(--space-md) var(--space-md) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--space-md) + 0.75rem);
+  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.app.app--pushed {
+  transform: translateX(-30%);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding: var(--space-xl) var(--space-sm) var(--space-lg);
+}
+
+.header-logo {
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.header-title {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+/* "Pro" rendered as the orange accent gradient using `background-clip: text`.
+   Flat fill only — no drop shadows or highlights, so it reads as a typographic
+   accent rather than a button. The fallback color (`--accent-a`) shows if the
+   browser doesn't support text clipping (very rare in 2026, but cheap insurance). */
+.header-title-accent {
+  color: var(--accent-a);
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+          text-fill-color: transparent;
+}
+
+.header-tagline {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+/* ── Card Base ── */
+.card {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  margin-bottom: 1.25rem;
+  box-shadow: var(--shadow-raised);
+}
+
+/* ── Controls Card (merged) ── */
+.controls-card {
+  padding: var(--space-lg);
+  overflow: hidden;
+}
+
+.control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: 0;
+}
+
+.control-section {
+  padding: 0;
+}
+
+.control-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(162, 138, 104, 0.18) 15%,
+    rgba(162, 138, 104, 0.18) 85%,
+    transparent 100%
+  );
+  margin: 24px 0;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.card-subtitle {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.card-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-accent);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.card-row--spread {
+  justify-content: space-between;
+}
+
+/* ── Toggle / Switch ── */
+.toggle {
+  --w: 56px;
+  --h: 32px;
+  --thumb: 24px;
+  --pad: 4px;
+
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  background: var(--bg);
+  box-shadow: var(--shadow-inset-sm), inset 0 0 0 100px rgba(162, 138, 104, 0.1);
+  transition: background var(--dur-med) ease, box-shadow var(--dur-med) ease;
+}
+
+.toggle[aria-checked="true"] {
+  background: var(--accent-gradient);
+  box-shadow: var(--shadow-inset-sm), 0 2px 10px rgba(196, 77, 12, 0.3);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: var(--pad);
+  left: var(--pad);
+  width: var(--thumb);
+  height: var(--thumb);
+  border-radius: 50%;
+  background: var(--bg);
+  box-shadow: var(--shadow-raised-sm);
+  transition: transform var(--dur-med) var(--ease);
+}
+
+.toggle[aria-checked="true"] .toggle-thumb {
+  transform: translateX(calc(var(--w) - var(--thumb) - var(--pad) * 2));
+}
+
+/* ── Stepper ── */
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.stepper-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-raised-sm);
+  transition:
+    box-shadow var(--dur-fast) ease,
+    transform var(--dur-fast) ease,
+    color var(--dur-fast) ease;
+  flex-shrink: 0;
+}
+
+.stepper-btn:hover {
+  color: var(--text-accent);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-raised-sm),
+    0 6px 16px rgba(162, 138, 104, 0.25);
+}
+
+.stepper-btn:active {
+  box-shadow: var(--shadow-pressed);
+  transform: scale(0.96) translateY(0);
+  color: var(--text-accent);
+}
+
+.stepper-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.stepper-display {
+  text-align: center;
+  flex: 1;
+}
+
+.stepper-value {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 3.5rem;             /* was 2.75rem — mirrors iOS 56pt bump */
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.stepper-value.bump {
+  transform: scale(1.15);
+}
+
+.stepper-unit {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* ── Slider ── */
+.slider-wrap {
+  position: relative;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  margin-top: var(--space-lg);
+}
+
+.slider-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 10px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-inset-sm);
+  overflow: hidden;
+}
+
+.slider-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 33.3%;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-full);
+  transition: width var(--dur-fast) ease;
+}
+
+.slider-thumb-el {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  box-shadow:
+    -3px -3px 8px rgba(255,255,255,0.92),
+     3px  3px 10px rgba(162,138,104,0.5),
+     0 2px 10px rgba(196, 77, 12, 0.3);
+  pointer-events: none;
+  transform: translateX(-50%);
+  left: 33.3%;
+  transition: left var(--dur-fast) ease;
+  z-index: 2;
+}
+
+/* Visible accent ring on thumb when focused */
+.slider-native:focus-visible ~ .slider-thumb-el,
+.slider-wrap:focus-within .slider-thumb-el {
+  box-shadow:
+    -3px -3px 8px rgba(255,255,255,0.92),
+     3px  3px 10px rgba(162,138,104,0.5),
+     0 0 0 3px var(--accent-a);
+}
+
+.slider-native {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+  z-index: 3;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.slider-labels {
+  position: relative;
+  height: 2.25rem;
+  margin-top: var(--space-sm);
+}
+
+.slider-labels span {
+  position: absolute;
+  top: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* left edge label */
+.slider-labels span:first-child {
+  left: 0;
+}
+
+/* right edge label */
+.slider-labels span:last-child {
+  right: 0;
+}
+
+/* middle label default: centered (e.g. Pizza Size "14"") */
+.slider-labels span:not(:first-child):not(:last-child) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* hydration recommended label — left/right overridden by JS inline style */
+.slider-labels .rec-middle {
+  white-space: nowrap;
+}
+
+.rec-label {
+  font-size: 0.625rem;
+  font-weight: 500;
+  color: var(--text-accent);
+  letter-spacing: 0.01em;
+}
+
+/* ── Segmented Control ── */
+.segmented {
+  position: relative;
+  display: flex;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  box-shadow: var(--shadow-inset);
+  margin-top: var(--space-lg);
+}
+
+/* Sliding pill indicator */
+.seg-indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: 0;
+  border-radius: calc(var(--radius-md) - 6px);
+  background: var(--accent-gradient);
+  box-shadow: var(--shadow-raised-sm), 0 2px 10px rgba(196, 77, 12, 0.3);
+  pointer-events: none;
+  transition: transform var(--dur-med) var(--ease), width var(--dur-med) var(--ease);
+  will-change: transform, width;
+}
+
+.seg-btn {
+  flex: 1;
+  padding: 10px var(--space-sm);
+  border: none;
+  border-radius: calc(var(--radius-md) - 6px);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transition: color var(--dur-med) ease;
+}
+
+.seg-btn:hover:not(.seg-btn--active) {
+  color: var(--text-primary);
+}
+
+.seg-btn--active {
+  color: var(--text-on-accent);
+  font-weight: 700;
+  cursor: default;
+}
+
+/* ── Hero Result Card ── */
+.hero-card {
+  margin-bottom: 1.25rem;
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-raised);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft warm glow behind hero */
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(232,120,58,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-value {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 4.5rem;
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-top: var(--space-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-unit {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-tertiary);
+  margin-left: 8px;
+  letter-spacing: -0.02em;
+}
+
+.hero-sub {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-accent);
+  margin-top: 0;
+}
+
+/* ── Ingredient Grid ── */
+.ingredient-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: var(--space-lg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.ingredient-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  min-height: 94px;
+  position: relative;
+}
+
+/* ── Vertical dividers (right edge of left-column cards) ── */
+
+/* Flour: fades at top (open), solid at bottom (connects to Salt) */
+.ingredient-card:nth-child(1)::after {
+  content: ''; position: absolute;
+  right: 0; top: 0; width: 1px; height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(162,138,104,0.18) 30%, rgba(162,138,104,0.18) 100%);
+}
+/* Salt: solid all the way (connects top and bottom) */
+.ingredient-card:nth-child(3)::after {
+  content: ''; position: absolute;
+  right: 0; top: 0; width: 1px; height: 100%;
+  background: rgba(162,138,104,0.18);
+}
+/* Olive Oil: solid at top (connects to Salt), fades at bottom (open) */
+.ingredient-card:nth-child(5)::after {
+  content: ''; position: absolute;
+  right: 0; top: 0; width: 1px; height: 100%;
+  background: linear-gradient(to bottom, rgba(162,138,104,0.18) 0%, rgba(162,138,104,0.18) 70%, transparent);
+}
+
+/* ── Horizontal dividers (bottom edge between rows) ── */
+
+/* Flour (left col): fades on left (open), solid on right (connects to vertical) */
+.ingredient-card:nth-child(1)::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; height: 1px; width: 100%;
+  background: linear-gradient(to right, transparent, rgba(162,138,104,0.18) 30%, rgba(162,138,104,0.18) 100%);
+}
+/* Water (right col): solid on left (connects to vertical), fades on right (open) */
+.ingredient-card:nth-child(2)::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; height: 1px; width: 100%;
+  background: linear-gradient(to right, rgba(162,138,104,0.18) 0%, rgba(162,138,104,0.18) 70%, transparent);
+}
+/* Salt (left col): fades on left (open), solid on right (connects to vertical) */
+.ingredient-card:nth-child(3)::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; height: 1px; width: 100%;
+  background: linear-gradient(to right, transparent, rgba(162,138,104,0.18) 30%, rgba(162,138,104,0.18) 100%);
+}
+/* Yeast (right col): solid on left (connects to vertical), fades on right (open) */
+.ingredient-card:nth-child(4)::before {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; height: 1px; width: 100%;
+  background: linear-gradient(to right, rgba(162,138,104,0.18) 0%, rgba(162,138,104,0.18) 70%, transparent);
+}
+
+.ingredient-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+}
+
+.ingredient-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+.ingredient-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ingredient-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ingredient-value {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.ingredient-value > span:first-child {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 2.125rem;          /* was 1.625rem — matches iOS 34pt bump */
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.ingredient-unit {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  line-height: 1.25;
+}
+
+.ingredient-alt {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 480px) {
+  .ingredient-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 14px 8px;
+    gap: 6px;
+  }
+
+  .ingredient-text {
+    align-items: center;
+  }
+}
+
+/* ── Method Card ── */
+.method-card {
+  margin-top: var(--space-xs);
+}
+
+/*/* Centered Fraunces heading — sized as a card hero, not just a small label.
+   Inline override rather than promoting `.card-title` globally, since the
+   controls-card titles ("Number of Pizzas" etc.) want to stay compact. */
+.method-card > .card-title {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  text-align: center;
+  display: block;
+}
+
+.method-list {
+  list-style: none;
+  margin-top: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  counter-reset: step;
+}
+
+.method-list li {
+  counter-increment: step;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0;
+  position: relative;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.method-list li::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(162, 138, 104, 0.18) 15%,
+    rgba(162, 138, 104, 0.18) 85%,
+    transparent 100%
+  );
+}
+
+.method-list li:last-child::after {
+  display: none;
+}
+
+.method-list li::before {
+  content: counter(step);
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  background: var(--bg);
+  box-shadow: var(--shadow-inset-sm);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: var(--text-accent);
+  margin-top: 1px;
+}
+
+/* ── Share Button ── */
+.share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  margin-top: var(--space-lg);
+  padding: 14px var(--space-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-raised-sm);
+  transition:
+    box-shadow var(--dur-fast) ease,
+    transform   var(--dur-fast) ease,
+    color       var(--dur-fast) ease;
+}
+.share-btn:hover {
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-raised-sm),
+    0 6px 16px rgba(162, 138, 104, 0.25);
+}
+.share-btn:active {
+  box-shadow: var(--shadow-pressed);
+  transform: scale(0.97) translateY(0);
+  color: var(--text-primary);
+}
+
+.share-btn--copied {
+  color: var(--text-accent);
+  pointer-events: none;
+}
+
+/* ── Footer ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 24px var(--space-sm);
+}
+
+.footer-credit {
+  font-size: 0.8125rem;
+  color: var(--text-tertiary);
+  font-weight: 400;
+}
+
+.footer-credit strong {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.footer-tip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 8px 4px;
+  cursor: pointer;
+  transition: color var(--dur-fast) ease;
+}
+
+/* Underline only the text label, not the pizza icon — matches the iOS
+   "Buy me a slice 🍕" treatment where the icon sits cleanly to the right
+   of the link without being part of the underlined hit area. */
+.footer-tip-btn .footer-tip-text {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer-tip-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.footer-tip-btn:hover {
+  color: var(--text-primary);
+}
+
+/* ── Venmo Tip Modal ── */
+.tip-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: rgba(30, 18, 8, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.tip-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.tip-modal {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  padding-top: calc(var(--space-md) + 52px + var(--space-sm)); /* clear 52px X button */
+  width: 80%;
+  max-width: 520px;
+  text-align: center;
+  position: relative;
+  transform: scale(0.92);
+  transition: transform 0.25s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.tip-overlay.is-open .tip-modal {
+  transform: scale(1);
+}
+
+.tip-close {
+  position: absolute;
+  top: var(--space-md);
+  left: var(--space-md);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-raised-sm);
+  transition: box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease;
+}
+
+.tip-close:hover {
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-raised-sm),
+    0 6px 16px rgba(162, 138, 104, 0.25);
+}
+
+.tip-close:active {
+  box-shadow: var(--shadow-pressed);
+  transform: scale(0.94) translateY(0);
+  color: var(--text-primary);
+}
+
+.tip-title {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 2.25rem;          /* was 1.25rem — mirrors iOS 36pt bump */
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: var(--space-sm);
+  padding-left: var(--space-lg); /* avoid overlap with close btn (now on left) */
+}
+
+.tip-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: var(--space-lg);
+}
+
+.tip-qr {
+  display: inline-flex;
+  padding: 10px;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  margin-bottom: var(--space-md);
+}
+
+.tip-qr img {
+  display: block;
+  border-radius: 4px;
+}
+
+.tip-handle {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-accent);
+  letter-spacing: 0.01em;
+}
+
+/* ── Step Value Highlights ── */
+.sv {
+  color: var(--text-accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Bonus Tip ── */
+.bonus-tip {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-inset);
+  display: flex;
+  flex-direction: column;
+}
+
+.bonus-tip--accordion {
+  cursor: pointer;
+  user-select: none;
+}
+
+.bonus-tip__label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-accent);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bonus-tip__toggle {
+  margin-left: auto;
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--text-accent);
+  flex-shrink: 0;
+}
+
+.tip-icon {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.bonus-tip__text {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.bonus-tip--accordion .bonus-tip__text {
+  overflow: hidden;
+  max-height: 0;
+  margin-top: 0;
+  opacity: 0;
+  transition:
+    max-height 300ms ease,
+    opacity    180ms ease,
+    margin-top 300ms ease;
+}
+
+.bonus-tip--accordion.is-open .bonus-tip__text {
+  max-height: 400px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+.bonus-tip__text strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* ── Walk Me Through It Button ── */
+.walkthrough-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  margin-top: var(--space-lg);
+  padding: 16px var(--space-lg);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--accent-gradient);
+  color: #FFFFFF;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow:
+    0 4px 20px rgba(196, 77, 12, 0.28),
+    -3px -3px 8px rgba(255, 255, 255, 0.9),
+     3px  3px 8px rgba(162, 138, 104, 0.4);
+  transition: transform var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+.walkthrough-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 28px rgba(196, 77, 12, 0.35),
+    -3px -3px 8px rgba(255, 255, 255, 0.9),
+     3px  3px 8px rgba(162, 138, 104, 0.4);
+}
+.walkthrough-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-pressed), 0 2px 10px rgba(196, 77, 12, 0.2);
+}
+
+/* ── Walkthrough Screen ── */
+.walkthrough {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse at 30% 0%, rgba(255,255,255,0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 100%, rgba(196,77,12,0.06) 0%, transparent 50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  transform: translateX(100%);
+  transition: transform 0.38s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;
+}
+.walkthrough.is-open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.wt-inner {
+  width: 100%;
+  max-width: 680px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-md) var(--space-md) max(var(--space-xl), env(safe-area-inset-bottom));
+}
+
+/* Animated slide wrapper — illustration + card move together; topbar stays */
+.wt-slide {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 0;
+  position: relative;
+}
+
+@keyframes wt-exit-left   { from { transform: translateX(0); }      to { transform: translateX(-100vw); } }
+@keyframes wt-exit-right  { from { transform: translateX(0); }      to { transform: translateX(100vw);  } }
+@keyframes wt-enter-right { from { transform: translateX(100vw); }  to { transform: translateX(0); }    }
+@keyframes wt-enter-left  { from { transform: translateX(-100vw); } to { transform: translateX(0); }    }
+
+.wt-slide[data-anim="exit-left"]   { animation: wt-exit-left   220ms cubic-bezier(0.4, 0, 1, 1)  forwards; }
+.wt-slide[data-anim="exit-right"]  { animation: wt-exit-right  220ms cubic-bezier(0.4, 0, 1, 1)  forwards; }
+.wt-slide[data-anim="enter-right"] { animation: wt-enter-right 280ms cubic-bezier(0, 0, 0.2, 1)  forwards; }
+.wt-slide[data-anim="enter-left"]  { animation: wt-enter-left  280ms cubic-bezier(0, 0, 0.2, 1)  forwards; }
+
+/* Top bar — 3-column grid so the dots stay centered on the page regardless
+   of how wide the close button or step counter are. With flexbox + space-
+   between, the dots ended up centered between X and counter, which drifts
+   off page-center because the close button and "Step N of 10" don't share
+   the same intrinsic width. The 1fr / auto / 1fr grid pins the dots dead-
+   center. */
+.wt-topbar {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding: var(--space-sm) 0 var(--space-md);
+  flex-shrink: 0;
+}
+.wt-topbar > .wt-close { justify-self: start;  }
+.wt-topbar > .wt-dots  { justify-self: center; }
+.wt-topbar > .wt-count { justify-self: end;    }
+
+.wt-close {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-raised-sm);
+  transition: box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease;
+  flex-shrink: 0;
+}
+.wt-close:hover {
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-raised-sm),
+    0 6px 16px rgba(162, 138, 104, 0.25);
+}
+.wt-close:active {
+  box-shadow: var(--shadow-pressed);
+  transform: scale(0.94) translateY(0);
+  color: var(--text-primary);
+}
+
+.wt-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.wt-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(162, 138, 104, 0.3);
+  transition: width var(--dur-med) var(--ease), background var(--dur-med) ease;
+}
+.wt-dot.is-active {
+  width: 20px;
+  border-radius: 3px;
+  background: var(--accent-a);
+}
+
+.wt-count {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+/* Illustration area — absolutely positioned behind the card */
+.wt-illustration {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: var(--space-xl);
+  pointer-events: none;
+}
+
+.wt-illus-img {
+  width: 50%;
+  max-width: 260px;
+  object-fit: contain;
+}
+
+/* Content */
+.wt-card {
+  background: var(--bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-raised);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  position: relative;
+  z-index: 1;
+}
+
+.wt-content {
+  flex-shrink: 0;
+}
+
+.wt-title {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 1.75rem;          /* was 1.625rem — mirrors iOS 28pt bump */
+  font-weight: 900;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin-bottom: var(--space-sm);
+}
+
+.wt-body {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+.wt-body strong {
+  color: var(--text-accent);
+  font-weight: 700;
+}
+
+/* Navigation */
+.wt-nav {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.wt-nav-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px var(--space-md);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--shadow-raised-sm);
+  transition: box-shadow var(--dur-fast) ease, transform var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+.wt-nav-btn:hover {
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-raised-sm),
+    0 6px 16px rgba(162, 138, 104, 0.25);
+}
+.wt-nav-btn:active {
+  box-shadow: var(--shadow-pressed);
+  transform: scale(0.97) translateY(0);
+  color: var(--text-primary);
+}
+.wt-nav-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+.wt-nav-btn--next {
+  background: var(--accent-gradient);
+  color: #FFFFFF;
+  box-shadow:
+    0 4px 16px rgba(196, 77, 12, 0.25),
+    -3px -3px 8px rgba(255,255,255,0.9),
+     3px  3px 8px rgba(162,138,104,0.4);
+}
+.wt-nav-btn--next:hover {
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 28px rgba(196, 77, 12, 0.35),
+    -3px -3px 8px rgba(255,255,255,0.9),
+     3px  3px 8px rgba(162,138,104,0.4);
+}
+.wt-nav-btn--next:active {
+  color: #FFFFFF;
+  transform: scale(0.97) translateY(0);
+  box-shadow: var(--shadow-pressed), 0 2px 10px rgba(196, 77, 12, 0.2);
+}
+
+/* ── Walkthrough Step Timers (steps 5 & 6) ──
+   Idle state renders one full-width button (10-min mix) or three inline
+   buttons (1h / 2h / 3h rest). Running state replaces them with a single
+   pill showing countdown + cancel. Wakes a chime via Web Audio at zero. */
+.wt-timer:empty { display: none; }
+
+.wt-timer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  width: 100%;
+  padding: 14px var(--space-md);
+  border: none;
+  border-radius: var(--radius-md);
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-raised-sm);
+  transition:
+    box-shadow var(--dur-fast) ease,
+    transform  var(--dur-fast) ease,
+    color      var(--dur-fast) ease;
+}
+.wt-timer-btn:hover {
+  color: var(--text-accent);
+  transform: translateY(-2px);
+  box-shadow:
+    var(--shadow-raised-sm),
+    0 6px 16px rgba(162, 138, 104, 0.22);
+}
+.wt-timer-btn:active {
+  box-shadow: var(--shadow-pressed);
+  transform: scale(0.97) translateY(0);
+  color: var(--text-accent);
+}
+
+.wt-timer-choices {
+  display: flex;
+  gap: var(--space-sm);
+}
+.wt-timer-btn--inline {
+  flex: 1;
+  padding: 12px var(--space-xs);
+  font-size: 0.9375rem;
+}
+
+.wt-timer-icon {
+  display: inline-flex;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+/* Running pill — recessed (inset shadow) with a soft warm glow so it reads
+   as "active state" without competing with the gradient Next button. */
+.wt-timer-running {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: 10px var(--space-md);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(135deg, rgba(196,77,12,0.06), rgba(232,120,58,0.10));
+  box-shadow: var(--shadow-inset-sm);
+}
+
+.wt-timer-info {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+}
+
+.wt-timer-countdown {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-vs);
+  font-size: 1.625rem;
+  font-weight: 900;
+  color: var(--text-accent);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.wt-timer-meta {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.wt-timer-cancel {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-raised-sm);
+  flex-shrink: 0;
+  transition:
+    box-shadow var(--dur-fast) ease,
+    transform  var(--dur-fast) ease,
+    color      var(--dur-fast) ease;
+}
+.wt-timer-cancel:hover {
+  color: var(--text-primary);
+  transform: scale(1.05);
+}
+.wt-timer-cancel:active {
+  box-shadow: var(--shadow-pressed);
+  transform: scale(0.94);
+}
+
+/* ── Value Transition Animation ── */
+@keyframes pop-in {
+  0%   { transform: scale(0.92); opacity: 0.6; }
+  60%  { transform: scale(1.05); }
+  100% { transform: scale(1);    opacity: 1;   }
+}
+
+.value-updated {
+  animation: pop-in var(--dur-med) var(--ease) forwards;
+}
+
+/* ── Responsive — tablet ── */
+@media (min-width: 560px) {
+  .app {
+    padding: var(--space-xl) var(--space-xl) var(--space-xl);
+  }
+  .wt-inner {
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+  .header-title { font-size: 2.75rem; }
+  .header-logo  { font-size: 4rem; }
+  .hero-value    { font-size: 5.5rem; }
+  .card,
+  .hero-card,
+  .wt-card       { padding: var(--space-xl); }
+  .controls-card { padding: var(--space-xl); }
+  .controls-card .control-row,
+  .controls-card .control-section { padding: 0; }
+  .controls-card .control-divider { margin: 24px 0; }
+}
+
+/* ── Responsive — desktop ── */
+@media (min-width: 900px) {
+  body {
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 15% 10%, rgba(255,255,255,0.5) 0%, transparent 40%),
+      radial-gradient(ellipse at 85% 90%, rgba(196,77,12,0.07) 0%, transparent 45%);
+  }
+  .app {
+    padding-top: var(--space-xl);
+    padding-bottom: 80px;
+  }
+}
+
+/* ── Responsive — large desktop: 3-card row ──
+   On wide screens the three primary cards (Controls · Results · Instructions)
+   sit side-by-side instead of stacking. Threshold of 1124px catches landscape
+   iPad Pro/Air as well as standard laptops while preserving a usable column
+   width inside each card (≈ 340–400px). The header sits centered above the
+   row and the footer below; only `#main-content` becomes a grid. */
+@media (min-width: 1124px) {
+  .app {
+    max-width: 1320px;
+  }
+
+  #main-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    /* `stretch` (the default) makes every grid cell match the tallest
+       cell's height, so all three cards line up flush at top AND bottom.
+       Previously this was `start`, which hung each card from the top and
+       let the shorter ones leave a ragged bottom edge. */
+    align-items: stretch;
+  }
+
+  /* Grid gap owns inter-card spacing — clear the stacked-layout margins so
+     cards align flush at the top of each column. */
+  #main-content > section,
+  #main-content .card,
+  #main-content .hero-card,
+  #main-content .method-card {
+    margin: 0;
+  }
+
+  /* Force equal 1fr distribution. Without `min-width: 0`, grid items default
+     to `min-width: auto`, meaning they can't shrink below their content's
+     intrinsic minimum. The controls + method cards have wider intrinsic mins
+     (segmented-control labels, long instruction text) than the hero card
+     (compact "857g" + 2-col grid), so they were winning the size battle and
+     the middle column was getting pinned to its content rather than to the
+     1fr share. Resetting min-width lets every column flow with the viewport. */
+  #main-content > section,
+  #main-content > .card {
+    min-width: 0;
+  }
+
+  /* Hero card fills its section wrapper. The section is the grid cell —
+     it stretches to row height under `align-items: stretch`. The hero card
+     inside is a block element, so its height defaults to its content
+     unless we explicitly tell it to fill the parent. Both `width: 100%`
+     and `height: 100%` are needed so the visible card matches the other
+     two cards' box dimensions exactly. */
+  #main-content > section > .hero-card {
+    width:  100%;
+    height: 100%;
+  }
+
+  /* Distribute each card's inner content vertically across the stretched
+     height. With `space-between` the first child sits flush at the top,
+     the last child flush at the bottom, and intermediate siblings get an
+     even share of the remaining space. So:
+       • Controls — Number of Pizzas at top, GF toggle at bottom.
+       • Hero    — "Total Dough" label at top, Share button at bottom.
+       • Method  — "Instructions" title at top, Walk Me Through It at bottom.
+     Cards naturally aligned at the same height + same internal rhythm. */
+  #main-content > .card,
+  #main-content > section > .hero-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Match share-btn's box dimensions to walkthrough-btn's so the two bottom
+     CTAs land at the same height across the row. The visual hierarchy
+     (neumorphic vs accent-gradient) stays intact — only the padding /
+     font-size / weight bump up to match. Outside this breakpoint the
+     buttons live in separate stacked cards and the size difference reads
+     correctly as primary-vs-secondary. */
+  #main-content .share-btn {
+    padding: 16px var(--space-lg);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  /* Ingredient cards stack vertically (icon over text) at desktop, same as
+     the <480px phone layout. In the 3-card row the hero column is ~400px
+     wide; with a 2-column inner grid that's ~160px per ingredient cell —
+     too tight for `icon + value + alt` to sit on one row without wrapping
+     or cramping. Stacking gives them the headroom they had on phone. */
+  .ingredient-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 14px 8px;
+    gap: 6px;
+  }
+  .ingredient-text {
+    align-items: center;
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
