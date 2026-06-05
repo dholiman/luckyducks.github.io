@@ -2,7 +2,7 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["XXXXXXXXXX.com.luckyduck.pieminder"],
+        "appIDs": ["GVSED3SNPM.com.luckyduck.pieminder"],
         "components": [
           {
             "/": "/pieminder/*",
