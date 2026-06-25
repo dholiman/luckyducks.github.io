@@ -1,7 +1,266 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>hello world!</h1>
-<a href="/pieminder/index.html">pieminder</a>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Ducks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="home">
+
+<!-- ─── NAV CONTAINER ────────────────────────────────────── -->
+<div class="nav-container" id="navContainer">
+  <div class="nav" id="navEl">
+
+    <!-- 8 Colored tile grid -->
+    <nav class="nav-wrapper">
+
+      <!-- TILE 1: About -->
+      <div class="nav-tile nav-tile-1">
+        <a href="#" class="tile about disabled">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">Coming&nbsp;soon</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TILE 2: PieMinder (featured app) -->
+      <div class="nav-tile nav-tile-2">
+        <a href="#" class="tile pieminder">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">PieMinder&nbsp;Pro</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" role="button" tabindex="0" aria-label="Open PieMinder Pro in a new tab" data-open="https://luckyducks.app/pieminder/index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TILE 3: Apps -->
+      <div class="nav-tile nav-tile-3">
+        <a href="#" class="tile apps disabled">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">More&nbsp;on&nbsp;the&nbsp;way</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TILE 4: Blog -->
+      <div class="nav-tile nav-tile-4">
+        <a href="#" class="tile blog disabled">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">Awaiting&nbsp;a&nbsp;new&nbsp;project</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TILE 5: Press -->
+      <div class="nav-tile nav-tile-5">
+        <a href="#" class="tile press disabled">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">Nothing&nbsp;to&nbsp;see&nbsp;yet</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TILE 6: Privacy -->
+      <div class="nav-tile nav-tile-6">
+        <a href="#" class="tile privacy disabled">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">Am&nbsp;I&nbsp;missing&nbsp;something?</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TILE 7: Updates -->
+      <div class="nav-tile nav-tile-7">
+        <a href="#" class="tile updates disabled">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">Stay&nbsp;tuned</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TILE 8: Contact -->
+      <div class="nav-tile nav-tile-8">
+        <a href="#" class="tile contact disabled">
+          <div class="pmcard__media">
+            <div class="pmcard__cluster pmcard__cluster--tl"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__pill--title">Watch&nbsp;this&nbsp;space</span>
+            </div></div>
+            <div class="pmcard__cluster pmcard__cluster--br"><div class="pmcard__pocket">
+              <span class="pmcard__pill pmcard__btn pmcard__btn--accent" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg></span>
+            </div></div>
+          </div>
+        </a>
+      </div>
+
+    </nav><!-- end nav-wrapper -->
+
+    <!-- Gridlines overlay (duplicate tile positions with just lines) -->
+    <nav class="nav-wrapper nav-wrapper-gridlines">
+      <!-- Menu gridline -->
+      <div class="menu">
+        <div class="tile-menu-tile nav-button nav-button-gridline" id="navButtonGridline">
+          <div class="tile-line nav-l"></div>
+          <div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div>
+          <div class="tile-line nav-b"></div>
+        </div>
+      </div>
+
+      <!-- Tile gridlines -->
+      <div class="nav-tile nav-tile-1 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+      <div class="nav-tile nav-tile-2 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+      <div class="nav-tile nav-tile-3 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+      <div class="nav-tile nav-tile-4 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+      <div class="nav-tile nav-tile-5 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+      <div class="nav-tile nav-tile-6 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+      <div class="nav-tile nav-tile-7 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+      <div class="nav-tile nav-tile-8 nav-tile-gridlines">
+        <div class="tile-line-wrapper">
+          <div class="tile-line nav-l"></div><div class="tile-line nav-r"></div>
+          <div class="tile-line nav-t"></div><div class="tile-line nav-b"></div>
+        </div>
+      </div>
+    </nav><!-- end nav-wrapper-gridlines -->
+
+    <!-- Center menu button -->
+    <div class="menu">
+      <button id="nav-button" aria-label="Navigation menu" class="tile-menu-tile nav-button">
+        <div class="nav-button-highlight"></div>
+
+        <!-- Card outline: a single line that traces the card's edge on load, then fades as the bg fills.
+             The path `d` is built in JS from the button's measured size + border-radius (pixel-space). -->
+        <svg class="card-outline" aria-hidden="true">
+          <path d="M0,0"/>
+        </svg>
+
+        <!-- Scroll chevrons -->
+        <div class="scroll-chevrons" id="scrollChevrons">
+          <div class="scroll-chevrons-container" id="scrollChevronsContainer">
+            <svg class="scroll-chevron chevron-1" viewBox="0 0 52 16" fill="none" width="52">
+              <path d="M4 4L26 12L48 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <svg class="scroll-chevron chevron-2" viewBox="0 0 52 16" fill="none" width="52">
+              <path d="M4 4L26 12L48 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Button content (text + logo) -->
+        <div class="nav-button-content">
+          <div class="nav-button-title-container">
+            <h1 class="nav-button-title nav-button-title-1">Welcome to the<br>duck pond!</h1>
+            <h3 class="nav-button-title nav-button-title-2">A small collection of tools, utilities, and experiments — just a way to keep my ducks in a row.</h3>
+          </div>
+        </div>
+
+        <!-- Lucky Ducks logo -->
+        <div class="home-logo-container w-embed">
+          <svg class="home-logo" viewBox="0 0 152.81 188.81">
+            <path class="logo-amber" d="M25.14,22.63C11.28,22.63,0,33.91,0,47.78v110.21c0,13.86,11.28,25.14,25.14,25.14s25.14-11.28,25.14-25.14V47.78c0-13.86-11.28-25.14-25.14-25.14Z"/>
+            <path class="logo-yellow" d="M139.34,111.75l-49.89,8.16c-2.45.4-4.95-.13-7.03-1.48l-21.54-13.99c-1.05-.68-1.05-2.21,0-2.89l20.74-13.47c2.59-1.69,5.72-2.34,8.78-1.84l48.95,8.01c4.29.7,7.44,4.41,7.44,8.76h0c0,4.35-3.15,8.05-7.44,8.76Z"/>
+            <path class="logo-ink" d="M90.37,114.95c-2.58,0-5.12-.75-7.32-2.17l-21.54-13.99c-1.49-.97-2.38-2.61-2.38-4.38,0-1.78.89-3.41,2.38-4.38l20.74-13.47c3.33-2.16,7.33-3,11.25-2.36l48.95,8.01c6.01.98,10.38,6.12,10.38,12.21s-4.36,11.23-10.38,12.21l-49.89,8.16c-.73.12-1.46.18-2.18.18ZM65.6,95.4l19.25,12.5c1.35.88,2.97,1.22,4.56.96l49.89-8.16c2.61-.43,4.5-2.66,4.5-5.3s-1.89-4.87-4.5-5.3l-48.95-8.01c-2.2-.36-4.44.11-6.3,1.32l-18.45,11.98Z"/>
+            <path class="logo-ink" d="M76.21,70.79h0c-2.6,0-4.76-2-4.95-4.59l-1.37-18.53c-.21-2.88,2.06-5.33,4.95-5.33h1.37c2.74,0,4.96,2.22,4.96,4.96v18.53c0,2.74-2.22,4.96-4.96,4.96Z"/>
+            <path class="logo-ink" d="M94.89,69.22h0c2.21,0,4.05-1.71,4.22-3.92l1.17-15.79c.18-2.45-1.76-4.54-4.22-4.54h-1.17c-2.33,0-4.23,1.89-4.23,4.23v15.79c0,2.33,1.89,4.23,4.23,4.23Z"/>
+            <path class="logo-ink" d="M104.16,54.84v18.09s9,1.47,9,1.47v-20.53c0-29.12-23.13-53.42-52.25-53.87C31.28-.45,7.02,23.53,7.02,53.07c0,0,.18,87.76,1.94,134.28.03.82.71,1.46,1.53,1.46h0c.84,0,1.53-.68,1.53-1.53V54.07c0-25.7,21.15-46.55,46.96-46.06s45.18,21.61,45.18,46.83Z"/>
+            <path class="logo-ink" d="M104.16,112.87v72.81c0,1.72,1.4,3.12,3.12,3.12h0c1.63,0,2.99-1.25,3.11-2.87,2.2-28.02,2.76-74.54,2.76-74.54l-9,1.47Z"/>
+          </svg>
+        </div>
+
+      </button>
+    </div><!-- end .menu -->
+
+  </div><!-- end .nav -->
+
+  <!-- ─── OUTRO PAGE ──────────────────────────────────────── -->
+  <div class="outro-page" id="outroPage" aria-hidden="true"></div>
+
+</div><!-- end .nav-container -->
+
+<!-- Partner info vertical label -->
+<a href="#" class="partner-info-button" id="partnerInfoButton">
+  luckyducks.app
+</a>
+
+<!-- ─── LIGHTBOX (enlarged project card; morphs up from the tile) ───── -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox__backdrop" data-close></div>
+  <div class="lightbox__card" id="lightboxCard" role="dialog" aria-modal="true" aria-label="Project preview"></div>
+</div>
+
+<script src="js/main.js"></script>
+
 </body>
 </html>

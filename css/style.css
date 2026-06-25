@@ -1,0 +1,1195 @@
+/* ── FONTS (Google Fonts) ─────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,700;1,9..144,800;1,9..144,900&family=Nunito:wght@400;500;600;700&display=swap');
+
+/* ── RESET & BASE ────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar { display: none; }
+
+::selection {
+  background-color: var(--accent--tab);
+  color: var(--palette-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text--text-light);
+  overscroll-behavior: none;
+  background-color: var(--palette-cream);
+}
+
+body.home {
+  height: 300vh;
+}
+
+h1, h2, h3, h4, h5, p, .h1, .h2, .h3, .h4, .h5 { margin: 0; padding: 0; }
+
+h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 120%;
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+/* ── CSS VARIABLES ───────────────────────────────────────── */
+:root {
+  --button-size: 90px;
+  --nav-tile-gap: 10px;
+  --tile-transition: 0.35s cubic-bezier(.4,0,.2,1);
+
+  /* ── Fonts ── */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans:    'Nunito', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', 'Roboto Mono', Menlo, monospace;
+
+  /* ── Tracking ── */
+  --tracking-display: -0.04em;
+  --tracking-tight:   -0.02em;
+  --tracking-normal:  0;
+  --tracking-label:   0.05em;
+
+  /* ── Core palette ── */
+  --palette-cream:      #FAFAF7;
+  --palette-surface:    #F5F3EE;
+  --palette-warm-wash:  #EFECE5;
+  --palette-parchment:  #E8E3D8;
+  --palette-ink:        #1A1612;
+
+  /* ── Neutral scale (warm-tinted) ── */
+  --palette-neutral0:    #FAFAF7;
+  --palette-neutral100:  #F5F3EE;
+  --palette-neutral200:  #EFECE5;
+  --palette-neutral300:  #E3DDCF;
+  --palette-neutral400:  #D4CBBB;
+  --palette-neutral500:  #B8B0A4;
+  --palette-neutral600:  #8A8178;
+  --palette-neutral700:  #6B6460;
+  --palette-neutral800:  #4A4340;
+  --palette-neutral900:  #3D3530;
+  --palette-neutral1000: #1A1612;
+
+  /* ── Amber scale ── */
+  --palette-amber-50:   #FFF8E6;
+  --palette-amber-100:  #FFEA00;
+  --palette-amber-200:  #FFDD00;
+  --palette-amber-300:  #FFD000;
+  --palette-amber-400:  #FFC300;
+  --palette-amber-500:  #FFB700;
+  --palette-amber-600:  #FFAA00;
+  --palette-amber-700:  #FFA200;
+  --palette-amber-800:  #FF9500;
+  --palette-amber-900:  #FF8800;
+  --palette-amber-950:  #FF7B00;
+
+  /* Shorthand aliases */
+  --palette-amber:      #FF9500;
+  --palette-amber-dark: #FF8800;
+
+  /* ── Semantic utility ── */
+  --palette-info:    #3B82F6;
+  --palette-warning: #D97706;
+  --palette-success: #16A34A;
+  --palette-error:   #DC2626;
+
+  /* ── Material / glass surfaces ── */
+  --material-extra-thin:  rgba(250, 250, 247, 0.40);
+  --material-thin:        rgba(245, 243, 238, 0.55);
+  --material-regular:     rgba(250, 250, 247, 0.75);
+  --material-thick:       rgba(245, 243, 238, 0.88);
+  --material-extra-thick: rgba(250, 250, 247, 0.94);
+
+  /* ── Elevation shadows ── */
+  --elevation-high:        0 12px 36px rgba(26, 22, 18, 0.14);
+  --elevation-primary:     0 6px 20px  rgba(26, 22, 18, 0.10);
+  --elevation-secondary:   0 4px 12px  rgba(26, 22, 18, 0.07);
+  --elevation-tertiary:    0 2px 6px   rgba(26, 22, 18, 0.05);
+  --elevation-amber-glow:  0 4px 16px  rgba(255, 149, 0, 0.28);
+  --elevation-soft-border: 1px solid   rgba(26, 22, 18, 0.06);
+
+  /* ── Tile palette — 8 distinct warm-family colors ── */
+  --tile-ink:       #1A1612;
+  --tile-amber:     #FF9500;
+  --tile-surface:   #F5F3EE;
+  --tile-deep:      #3D3530;
+  --tile-parchment: #E8E3D8;
+  --tile-mid:       #4A4340;
+  --tile-wash:      #EFECE5;
+  --tile-neutral:   #D4CBBB;
+
+  /* ── Gridlines ── */
+  --color--accent--line-solid: #D4CBBB;
+  --color--accent--line:       rgba(212, 203, 187, 0.4);
+
+  /* ── Surfaces ── */
+  --surface--background-dark:  #1A1612;
+  --surface--background-light: #FAFAF7;
+  --surface--overlay-subtle:   #F5F3EE;
+
+  /* ── Text ── */
+  --text--base:              #1A1612;
+  --text--text-light:        #1A1612;
+  --text--text-subtle-light: #6B6460;
+
+  /* ── Primary accent ── */
+  --accent--tab: #FF9500;
+  --white:       #FAFAF7;
+}
+
+@media (max-width: 991px) {
+  :root {
+    --button-size: 64px;
+    --nav-tile-gap: 5px;
+  }
+}
+
+/* ── NAV FIXED WRAPPER ───────────────────────────────────── */
+.nav {
+  z-index: 100;
+  position: fixed;
+  inset: 0%;
+  overflow: hidden;
+}
+
+/* ── NAV WRAPPER (tile grid) ─────────────────────────────── */
+.nav-wrapper {
+  z-index: 2;
+  position: absolute;
+  inset: 0%;
+}
+
+/* One unified drop-shadow for the whole card group: it shadows the combined
+   silhouette and composites beneath every card body, so no card's shadow ever
+   lands on a neighbour — they read as one elevated plane. */
+.nav-wrapper:not(.nav-wrapper-gridlines) {
+  filter:
+    drop-shadow(0 10px 24px rgba(26, 22, 18, 0.20))
+    drop-shadow(0 2px 5px rgba(26, 22, 18, 0.16));
+}
+
+.nav-wrapper.nav-wrapper-gridlines {
+  z-index: 1;
+  opacity: 0.4;
+}
+
+/* ── TILE POSITIONS ──────────────────────────────────────── */
+.nav-tile {
+  padding: 0;
+  position: absolute;
+}
+
+/* Left column */
+.nav-tile.nav-tile-1 {
+  height: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+  left: var(--nav-tile-gap);
+  top: var(--nav-tile-gap);
+  width: calc(20% - var(--nav-tile-gap) * 2);
+  transform-origin: 100% 100%;
+}
+
+.nav-tile.nav-tile-5 {
+  height: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+  left: var(--nav-tile-gap);
+  bottom: var(--nav-tile-gap);
+  width: calc(20% - var(--nav-tile-gap) * 2);
+  transform-origin: 100% 0;
+}
+
+/* Center-left top */
+.nav-tile.nav-tile-2 {
+  height: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+  width: calc(30% + var(--button-size) / 2);
+  left: 20%;
+  top: var(--nav-tile-gap);
+  transform-origin: 100% 100%;
+}
+
+/* Center-left bottom */
+.nav-tile.nav-tile-6 {
+  width: calc(30% - var(--button-size) / 2 - var(--nav-tile-gap));
+  height: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+  left: 20%;
+  bottom: var(--nav-tile-gap);
+  transform-origin: 100% 0;
+}
+
+/* Center-right top */
+.nav-tile.nav-tile-3 {
+  width: calc(30% - var(--button-size) / 2 - var(--nav-tile-gap));
+  height: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+  top: var(--nav-tile-gap);
+  right: 20%;
+  transform-origin: 0 100%;
+}
+
+/* Center-right bottom */
+.nav-tile.nav-tile-7 {
+  height: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+  width: calc(30% + var(--button-size) / 2);
+  right: 20%;
+  bottom: var(--nav-tile-gap);
+  transform-origin: 0 0;
+}
+
+/* Right column */
+.nav-tile.nav-tile-4 {
+  height: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+  top: var(--nav-tile-gap);
+  right: var(--nav-tile-gap);
+  width: calc(20% - var(--nav-tile-gap) * 2);
+  transform-origin: 0 100%;
+}
+
+.nav-tile.nav-tile-8 {
+  height: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+  width: calc(20% - var(--nav-tile-gap) * 2);
+  bottom: var(--nav-tile-gap);
+  right: var(--nav-tile-gap);
+  transform-origin: 0 0;
+}
+
+/* All tiles get full rounded corners (app-card spec: 20px) — set on .tile */
+
+/* ── APP-TILE CARD (PieMinder card component, adapted to fill the grid cell) ──
+   Source: /pieminder-card. Pill clusters tuck into two corners inside a cream
+   "pocket" that bulges from the frame; concave fillets (radial-gradient
+   pseudo-elements) blend each pocket back into the thin frame. */
+.tile {
+  /* Design tokens */
+  --pm-card-bg: var(--palette-warm-wash);          /* #efece5 — card + frame + pockets + fillets */
+  --pm-card-bg-0: rgba(239, 236, 229, 0);          /* same cream at 0 alpha (fillet feather) */
+  --pm-media-bg: #ccc6b8;                          /* shows before/behind the image */
+  --pm-title-bg: var(--palette-cream);             /* #fafaf7 title pill */
+  --pm-ink: var(--palette-ink);                    /* text + icons */
+  --pm-btn-bg: var(--palette-neutral400);          /* #d4cbbb secondary button */
+  --pm-accent: var(--palette-amber);               /* #ff9500 accent button */
+
+  --pm-radius-card: 24px;
+  --pm-radius-media: 16px;
+  --pm-radius-pill: 20px;
+  --pm-fillet: 24px;
+  --pm-frame: 8px;
+  --pm-moat: 8px;
+  --pm-seam: 0.5px;        /* hairline cream outline on fillets to close sub-pixel gaps */
+
+  --pm-pill-h: 40px;
+  --pm-pill-pad-x: 24px;
+  --pm-btn-size: 40px;
+  --pm-gap: 8px;
+
+  --pm-image: none;                                /* only the featured app sets an image */
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;                                    /* fill the nav-tile grid cell */
+  padding: var(--pm-frame);
+  background: var(--pm-card-bg);
+  border-radius: var(--pm-radius-card);
+  color: var(--pm-ink);
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
+  /* Shadow comes entirely from the container's unified drop-shadow (co-planar,
+     never lands on a neighbor). No per-tile or hover shadow. */
+}
+.tile *, .tile *::before, .tile *::after { box-sizing: border-box; }
+
+/* Placeholder tiles: dimmed and non-interactive until a real project lands */
+.tile.disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Featured app uses the screenshot; placeholders use a solid backing */
+.tile.pieminder { --pm-image: url("../assets/figma/phones.png"); }
+.tile.about   { --pm-media-bg: var(--tile-ink); }
+.tile.apps    { --pm-media-bg: var(--palette-neutral300); }
+.tile.blog    { --pm-media-bg: var(--tile-deep); }
+.tile.press   { --pm-media-bg: var(--tile-parchment); }
+.tile.privacy { --pm-media-bg: var(--tile-mid); }
+.tile.updates { --pm-media-bg: var(--palette-neutral400); }
+.tile.contact { --pm-media-bg: var(--tile-neutral); }
+
+/* Media: the image (or solid backing), clipped. Clusters live inside it so the
+   rounded clip gives the pockets their convex outer corner for free. */
+.pmcard__media {
+  position: relative;
+  width: 100%;
+  height: 100%;                                    /* fills the card content box */
+  overflow: hidden;
+  border-radius: var(--pm-radius-media);
+  background-color: var(--pm-media-bg);
+  background-image: var(--pm-image);
+  background-repeat: no-repeat;
+  background-position: center 28%;
+  background-size: cover;
+}
+
+/* Clusters pinned to corners. tl/br are used by the grid tiles; tr (close) and
+   bl (copy) are added only in the lightbox variant. */
+.pmcard__cluster { position: absolute; display: flex; }
+.pmcard__cluster--tl { top: 0; left: 0; }
+.pmcard__cluster--br { bottom: 0; right: 0; }
+.pmcard__cluster--tr { top: 0; right: 0; }
+.pmcard__cluster--bl { bottom: 0; left: 0; }
+
+/* Pocket: cream fill holding the pill(s); moat (padding) only on media-facing sides */
+.pmcard__pocket {
+  position: relative;
+  display: flex;
+  gap: var(--pm-gap);
+  background: var(--pm-card-bg);
+}
+.pmcard__cluster--tl .pmcard__pocket {
+  padding: 0 var(--pm-moat) var(--pm-moat) 0;
+  border-bottom-right-radius: calc(var(--pm-radius-pill) + var(--pm-moat));
+}
+.pmcard__cluster--br .pmcard__pocket {
+  padding: var(--pm-moat) 0 0 var(--pm-moat);
+  border-top-left-radius: calc(var(--pm-radius-pill) + var(--pm-moat));
+}
+.pmcard__cluster--tr .pmcard__pocket {
+  padding: 0 0 var(--pm-moat) var(--pm-moat);
+  border-bottom-left-radius: calc(var(--pm-radius-pill) + var(--pm-moat));
+}
+.pmcard__cluster--bl .pmcard__pocket {
+  padding: var(--pm-moat) var(--pm-moat) 0 0;
+  border-top-right-radius: calc(var(--pm-radius-pill) + var(--pm-moat));
+}
+
+/* Concave fillets: a --pm-fillet square painted with a radial gradient so a
+   quarter-disc is transparent (image shows) and the rest is cream. Two per
+   pocket, pinned to its reentrant corners — independent of pill size. */
+.pmcard__pocket::before,
+.pmcard__pocket::after {
+  content: "";
+  position: absolute;
+  /* Grown by --pm-seam on the cream-facing sides only; the offsets below keep
+     the arc corner anchored, so the seam closes without moving the curve. */
+  width: calc(var(--pm-fillet) + var(--pm-seam));
+  height: calc(var(--pm-fillet) + var(--pm-seam));
+}
+.pmcard__cluster--tl .pmcard__pocket::before,
+.pmcard__cluster--tl .pmcard__pocket::after {
+  background: radial-gradient(
+    circle at bottom right,
+    var(--pm-card-bg-0) calc(var(--pm-fillet) - 0.5px),
+    var(--pm-card-bg) calc(var(--pm-fillet) + 0.5px)
+  );
+}
+.pmcard__cluster--tl .pmcard__pocket::before { top: calc(-1 * var(--pm-seam)); left: calc(100% - var(--pm-seam)); }
+.pmcard__cluster--tl .pmcard__pocket::after  { top: calc(100% - var(--pm-seam)); left: calc(-1 * var(--pm-seam)); }
+
+.pmcard__cluster--br .pmcard__pocket::before,
+.pmcard__cluster--br .pmcard__pocket::after {
+  background: radial-gradient(
+    circle at top left,
+    var(--pm-card-bg-0) calc(var(--pm-fillet) - 0.5px),
+    var(--pm-card-bg) calc(var(--pm-fillet) + 0.5px)
+  );
+}
+.pmcard__cluster--br .pmcard__pocket::before { bottom: calc(-1 * var(--pm-seam)); right: calc(100% - var(--pm-seam)); }
+.pmcard__cluster--br .pmcard__pocket::after  { bottom: calc(100% - var(--pm-seam)); right: calc(-1 * var(--pm-seam)); }
+
+.pmcard__cluster--tr .pmcard__pocket::before,
+.pmcard__cluster--tr .pmcard__pocket::after {
+  background: radial-gradient(
+    circle at bottom left,
+    var(--pm-card-bg-0) calc(var(--pm-fillet) - 0.5px),
+    var(--pm-card-bg) calc(var(--pm-fillet) + 0.5px)
+  );
+}
+.pmcard__cluster--tr .pmcard__pocket::before { top: calc(-1 * var(--pm-seam)); right: calc(100% - var(--pm-seam)); }
+.pmcard__cluster--tr .pmcard__pocket::after  { top: calc(100% - var(--pm-seam)); right: calc(-1 * var(--pm-seam)); }
+
+.pmcard__cluster--bl .pmcard__pocket::before,
+.pmcard__cluster--bl .pmcard__pocket::after {
+  background: radial-gradient(
+    circle at top right,
+    var(--pm-card-bg-0) calc(var(--pm-fillet) - 0.5px),
+    var(--pm-card-bg) calc(var(--pm-fillet) + 0.5px)
+  );
+}
+.pmcard__cluster--bl .pmcard__pocket::before { bottom: calc(-1 * var(--pm-seam)); left: calc(100% - var(--pm-seam)); }
+.pmcard__cluster--bl .pmcard__pocket::after  { bottom: calc(100% - var(--pm-seam)); left: calc(-1 * var(--pm-seam)); }
+
+/* Pills */
+.pmcard__pill {
+  height: var(--pm-pill-h);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--pm-radius-pill);
+  color: var(--pm-ink);
+  white-space: nowrap;
+}
+.pmcard__pill--title {
+  padding: 0 var(--pm-pill-pad-x);
+  background: var(--pm-title-bg);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 24px;
+  font-variation-settings: "opsz" 18, "SOFT" 0, "WONK" 1;
+}
+.pmcard__btn {
+  width: var(--pm-btn-size);
+  padding: 0;
+  background: var(--pm-btn-bg);
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.pmcard__btn--accent { background: var(--pm-accent); }
+.pmcard__btn svg { width: 18px; height: 18px; display: block; }
+
+.tile-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(14px, 1.4vw, 22px);
+  line-height: 120%;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── TILE VISUAL AREAS ───────────────────────────────────── */
+.tile-visual {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Strategy tile – bezier curve */
+.strategy-bezier {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+.strategy-bezier path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  opacity: 0.5;
+  transition: opacity var(--tile-transition);
+}
+
+.tile.strategy:hover .strategy-bezier path { opacity: 0.8; }
+
+.bezier-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  position: absolute;
+  transition: transform var(--tile-transition);
+}
+
+.bezier-dot-1 { left: 0; top: 20%; }
+.bezier-dot-2 { right: 0; top: 50%; transform: translateY(-50%); }
+.bezier-dot-3 { left: 0; bottom: 20%; }
+
+/* Voice & Tone – quotation mark */
+.voice-quotation {
+  font-family: 'Dbsharpgroteskvariable Vf', serif;
+  font-weight: 900;
+  font-size: clamp(60px, 10vw, 140px);
+  line-height: 0.8;
+  opacity: 0.25;
+  user-select: none;
+  transition: opacity var(--tile-transition), transform var(--tile-transition);
+}
+.tile.voice-tone:hover .voice-quotation { opacity: 0.5; transform: scale(1.05); }
+
+/* Logo tile – Dropbox diamond */
+.logo-diamond {
+  width: 50%;
+  max-width: 100px;
+  opacity: 0.6;
+  transition: opacity var(--tile-transition);
+}
+.tile.logo:hover .logo-diamond { opacity: 1; }
+
+/* Typography tile */
+.typo-glyph {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(40px, 7vw, 100px);
+  opacity: 0.25;
+  letter-spacing: -0.05em;
+  user-select: none;
+  transition: font-weight var(--tile-transition), opacity var(--tile-transition);
+}
+.tile.blog:hover .typo-glyph {
+  font-weight: 300;
+  opacity: 0.5;
+}
+
+/* Iconography tile – lock */
+.icon-lock {
+  width: 40%;
+  max-width: 80px;
+  opacity: 0.5;
+  transition: opacity var(--tile-transition), transform var(--tile-transition);
+}
+.tile.iconography:hover .icon-lock { opacity: 0.8; transform: scale(1.05); }
+
+/* Color tile – blocks */
+.color-blocks {
+  display: flex;
+  gap: 6px;
+  width: 70%;
+}
+
+.color-block {
+  height: 48px;
+  border-radius: 4px;
+  flex: 1;
+  transition: transform var(--tile-transition), background-color var(--tile-transition);
+}
+
+.color-block-1 { background: var(--color--identity--yellow); }
+.color-block-2 { background: var(--color--identity--red); }
+.color-block-3 { background: var(--color--identity--cyan); }
+.color-block-4 { background: var(--color--identity--purple); }
+
+.tile.color:hover .color-block { transform: scaleY(1.2); }
+
+/* Imagery tile – landscape */
+.imagery-landscape {
+  width: 90%;
+  opacity: 0.5;
+  transition: opacity var(--tile-transition);
+}
+.tile.imagery:hover .imagery-landscape { opacity: 0.8; }
+
+/* Motion tile – bezier tangent */
+.motion-curve {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+.motion-curve path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  opacity: 0.4;
+}
+.motion-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  position: absolute;
+  transition: all 0.5s cubic-bezier(.34,1.56,.64,1);
+}
+.motion-dot-1 { left: 15%; top: 70%; }
+.motion-dot-2 { right: 15%; bottom: 70%; }
+.tile.motion:hover .motion-dot-1 { left: 10%; top: 80%; }
+.tile.motion:hover .motion-dot-2 { right: 10%; bottom: 80%; }
+
+/* ── GRIDLINE TILES ──────────────────────────────────────── */
+.tile-line {
+  display: none;
+  background-color: var(--color--accent--line-solid);
+  pointer-events: none;
+  position: absolute;
+}
+
+.tile-line.nav-l {
+  width: 1px;
+  height: 300vh;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%) scaleY(0);
+  transform-origin: center top;
+}
+
+.tile-line.nav-r {
+  width: 1px;
+  height: 300vh;
+  top: 50%;
+  right: 0;
+  transform: translate(0, -50%) scaleY(0);
+  transform-origin: center bottom;
+}
+
+.tile-line.nav-t {
+  width: 300vw;
+  height: 1px;
+  top: 0;
+  right: 50%;
+  transform: translate(50%, 0) scaleX(0);
+  transform-origin: right center;
+}
+
+.tile-line.nav-b {
+  width: 300vw;
+  height: 1px;
+  bottom: 0;
+  right: 50%;
+  transform: translate(50%, 0) scaleX(0);
+  transform-origin: left center;
+}
+
+/* Grid tile lines (the .nav-tile-gridlines version) */
+.nav-tile.nav-tile-gridlines .tile-line {
+  opacity: 0;
+}
+
+/* ── CENTER MENU BUTTON ──────────────────────────────────── */
+.menu {
+  z-index: 101;
+  pointer-events: auto;
+  width: var(--button-size);
+  height: var(--button-size);
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tile-menu-tile {
+  color: var(--text--text-light);
+  border-radius: 6px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 23px;
+  text-decoration: none;
+  transition: border-color 0.4s cubic-bezier(.4,0,.2,1), background-color 0.4s cubic-bezier(.4,0,.2,1);
+  display: flex;
+  overflow: hidden;
+}
+
+.tile-menu-tile.nav-button {
+  z-index: 2;
+  background-color: transparent;
+  color: var(--accent--tab);
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+  flex: none;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 0;
+  display: block;
+  position: relative;
+  overflow: visible;
+}
+
+.tile-menu-tile.nav-button:focus { outline: none; }
+
+/* Card outline — strokes the card perimeter on load like the icon draw-in */
+.card-outline {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.6s ease-in-out;
+  z-index: 1;
+}
+.card-outline path {
+  fill: none;
+  stroke: var(--palette-neutral300); /* #E3DDCF — two steps darker than the card background */
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* The path `d` and the dash length (= its pixel perimeter) are set in JS so
+     the stroke traces the card's true edge and draws as ONE continuous line.
+     Fallback dash keeps it hidden until JS runs. */
+  stroke-dasharray: 4000;
+  stroke-dashoffset: 4000;
+  animation: drawIn 0.9s cubic-bezier(.4,0,.3,1) forwards 0.5s;
+}
+/* Retire the outline as the neutral background fades in at corner-move */
+.nav-container.logo-to-corner .card-outline {
+  opacity: 0;
+}
+
+.tile-menu-tile.nav-button.nav-button-gridline {
+  background-color: transparent;
+  overflow: visible;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ── NAV BUTTON CONTENT ──────────────────────────────────── */
+.nav-button-content {
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-button-title-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.nav-button-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 56px);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  color: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: left;
+  padding: 32px;
+  overflow: hidden;
+}
+
+.nav-button-title.nav-button-title-1 { opacity: 0; }
+.nav-button-title.nav-button-title-2 { opacity: 0; font-size: clamp(14px, 1.8vw, 28px); line-height: 1.35; letter-spacing: -0.02em; }
+
+/* Lucky Ducks logo in nav button */
+.home-logo-container {
+  position: absolute;
+  width: 65%;
+  height: 65%;
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+  padding: 0.75rem 0.5rem 0.75rem 1rem;
+}
+
+/* Logo moves to bottom-left after draw-in completes */
+.nav-container.logo-to-corner .home-logo-container {
+  width: 16%;
+  height: 16%;
+  left: 16px;
+  bottom: 32px;
+  transform: none;
+  transition:
+    width  0.7s cubic-bezier(.5,0,.2,1),
+    height 0.7s cubic-bezier(.5,0,.2,1),
+    left   0.7s cubic-bezier(.5,0,.2,1),
+    bottom 0.7s cubic-bezier(.5,0,.2,1),
+    transform 0.7s cubic-bezier(.5,0,.2,1);
+}
+
+
+.home-logo {
+  width: 100%;
+  height: 100%;
+}
+
+.home-logo path {
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 6000;
+  stroke-dashoffset: 6000;
+  fill-opacity: 0;
+  stroke-width: 1.5px;
+  animation: drawIn 1.25s cubic-bezier(.4,0,.3,1) forwards 0.5s;
+}
+
+/* Each path strokes and fills with its own brand color */
+.home-logo path.logo-amber  { fill: #ffc300; stroke: #ffc300; }
+.home-logo path.logo-yellow { fill: #ffea00; stroke: #ffea00; }
+.home-logo path.logo-ink    { fill: #1a1612; stroke: #1a1612; }
+
+@keyframes drawIn {
+  to { stroke-dashoffset: 0; }
+}
+
+.nav-container.animating-in .home-logo path {
+  transition: fill-opacity 0.75s ease-in-out 1.25s, stroke-opacity 0.5s ease-in-out 1.5s;
+}
+
+.nav-container.final .home-logo path {
+  fill-opacity: 1;
+  stroke-opacity: 0;
+}
+
+/* Nav button SVGs (hamburger, close, etc.) */
+.nav-button-svg {
+  position: absolute;
+  display: none !important;
+}
+
+/* Scroll chevrons */
+.scroll-chevrons {
+  display: none;
+  position: absolute;
+  bottom: 52px;
+  right: 32px;
+  width: 52px;
+  height: 52px;
+  pointer-events: none;
+}
+
+.scroll-chevrons-container {
+  opacity: 0;
+  transition: opacity 1.5s;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.scroll-chevrons-container.visible { opacity: 1; }
+
+.scroll-chevron {
+  position: absolute;
+  right: 14px;
+  color: var(--color--accent--line-solid);
+  transition: transform 1.6s cubic-bezier(.2,0,.3,1), color 1.5s;
+}
+
+.scroll-chevron.chevron-1 { bottom: 14px; }
+.scroll-chevron.chevron-2 { bottom: 2px; }
+
+.scroll-chevron.activated {
+  transform: translateY(18px);
+  color: var(--accent--tab);
+  transition: transform 0.65s cubic-bezier(.6,0,.6,1), color 0.65s;
+}
+
+@media (max-width: 991px) {
+  .scroll-chevrons { bottom: 20px; right: 20px; }
+  .scroll-chevron.chevron-1 { bottom: 14px; }
+  .scroll-chevron.chevron-2 { bottom: 2px; }
+}
+
+/* Nav button highlight */
+.nav-button-highlight {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0);
+  transition: background 0.3s;
+  pointer-events: none;
+}
+
+.tile-menu-tile.nav-button:hover .nav-button-highlight {
+  background: rgba(255,255,255,0.05);
+}
+
+/* Enlarge animation for tile click */
+.nav-tile.enlarge {
+  transition: transform 0.6s cubic-bezier(.5,0,.2,1);
+}
+
+.nav-tile-1.enlarge, .nav-tile-2.enlarge, .nav-tile-3.enlarge, .nav-tile-4.enlarge {
+  transform: scaleY(2) !important;
+}
+
+.nav-tile-5.enlarge, .nav-tile-6.enlarge, .nav-tile-7.enlarge, .nav-tile-8.enlarge {
+  transform: scaleY(2) !important;
+}
+
+.nav-tile-1.enlarge, .nav-tile-2.enlarge, .nav-tile-5.enlarge, .nav-tile-6.enlarge {
+  transform: scaleX(2) !important;
+}
+
+.nav-tile-3.enlarge, .nav-tile-4.enlarge, .nav-tile-7.enlarge, .nav-tile-8.enlarge {
+  transform: scaleX(2) !important;
+}
+
+.nav-tile-2.enlarge, .nav-tile-6.enlarge {
+  transform: scale(2) !important;
+}
+
+.nav-tile-3.enlarge, .nav-tile-7.enlarge {
+  transform: scale(2) !important;
+}
+
+/* Close state */
+.nav-container.close .nav-tile { pointer-events: none; }
+
+/* ── OUTRO PAGE ──────────────────────────────────────────── */
+.outro-page {
+  z-index: 99;
+  background-color: var(--surface--background-light);
+  color: var(--text--base);
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 60px);
+  height: 100vh;
+  display: flex;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── PARTNER INFO ────────────────────────────────────────── */
+.partner-info-button {
+  z-index: 99;
+  color: var(--palette-amber);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 16px;
+  left: 20px;
+  transform: rotate(180deg);
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+/* ── LOAD-IN ANIMATION STYLES ────────────────────────────── */
+.menu .tile-line.nav-l {
+  transform: translate(0, -50%) scaleY(0);
+  transform-origin: center top;
+  background-color: var(--accent--tab);
+}
+.menu .tile-line.nav-r {
+  transform: translate(0, -50%) scaleY(0);
+  transform-origin: center bottom;
+  background-color: var(--accent--tab);
+}
+.menu .tile-line.nav-t {
+  transform: translate(50%, 0) scaleX(0);
+  transform-origin: right center;
+  background-color: var(--accent--tab);
+}
+.menu .tile-line.nav-b {
+  transform: translate(50%, 0) scaleX(0);
+  transform-origin: left center;
+  background-color: var(--accent--tab);
+}
+.nav-container.animating-in .nav-wrapper-gridlines {
+  transition: opacity 1.5s ease-in-out 0.75s;
+}
+.nav-container:not(.final) .nav-wrapper-gridlines {
+  opacity: 1;
+}
+.nav-container.animating-in .nav-button-title-container {
+  transition: opacity 1.25s ease-in-out 1.25s;
+}
+.nav-container:not(.final) .nav-button-title-container {
+  opacity: 0;
+}
+
+/* ── RESPONSIVE: 991px (tablet — layout restructures to 2-col × 4-row) ── */
+@media screen and (max-width: 991px) {
+  .nav-tile.nav-tile-1 {
+    height: calc(25% - var(--nav-tile-gap) * 2);
+    width: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+    top: var(--nav-tile-gap);
+    left: var(--nav-tile-gap);
+    right: initial;
+    bottom: initial;
+    transform-origin: 100% 100%;
+  }
+
+  .nav-tile.nav-tile-2 {
+    top: var(--nav-tile-gap);
+    left: initial;
+    width: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+    height: calc(25% - var(--nav-tile-gap) * 2);
+    right: var(--nav-tile-gap);
+    bottom: initial;
+    transform-origin: 0 100%;
+  }
+
+  .nav-tile.nav-tile-3 {
+    height: calc(25% - var(--button-size) / 2 - var(--nav-tile-gap));
+    width: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+    top: 25%;
+    right: initial;
+    left: var(--nav-tile-gap);
+    bottom: initial;
+    transform-origin: 100% 100%;
+  }
+
+  .nav-tile.nav-tile-4 {
+    left: initial;
+    height: calc(25% + var(--button-size) / 2);
+    width: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+    top: 25%;
+    right: var(--nav-tile-gap);
+    bottom: initial;
+    transform-origin: 0 100%;
+  }
+
+  .nav-tile.nav-tile-5 {
+    top: initial;
+    height: calc(25% + var(--button-size) / 2);
+    width: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+    left: var(--nav-tile-gap);
+    bottom: 25%;
+    right: initial;
+    transform-origin: 100% 0;
+  }
+
+  .nav-tile.nav-tile-6 {
+    width: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+    left: initial;
+    right: var(--nav-tile-gap);
+    height: calc(25% - var(--button-size) / 2 - var(--nav-tile-gap));
+    top: initial;
+    bottom: 25%;
+    transform-origin: 0 0;
+  }
+
+  .nav-tile.nav-tile-7 {
+    right: initial;
+    left: var(--nav-tile-gap);
+    height: calc(25% - var(--nav-tile-gap) * 2);
+    width: calc(50% + var(--button-size) / 2 - var(--nav-tile-gap));
+    bottom: var(--nav-tile-gap);
+    top: initial;
+    transform-origin: 100% 0;
+    border-bottom-left-radius: 8px;
+  }
+
+  .nav-tile.nav-tile-8 {
+    height: calc(25% - var(--nav-tile-gap) * 2);
+    width: calc(50% - var(--button-size) / 2 - var(--nav-tile-gap) * 2);
+    bottom: var(--nav-tile-gap);
+    right: var(--nav-tile-gap);
+    top: initial;
+    left: initial;
+    transform-origin: 0 0;
+    border-bottom-right-radius: 8px;
+  }
+
+  /* Slightly tighter uniform rounding on mobile (still within 12–20px spec) */
+  .tile { border-radius: 14px; }
+  .tile-menu-tile.nav-button { border-radius: 14px; }
+
+  /* Tile padding */
+  .nav-button-content { padding: 17.7px 14.5px 17.7px 17px; }
+
+  /* Nav button title sizes */
+  .nav-button-title.nav-button-title-1 { font-size: clamp(24px, 4.5vw, 44px); }
+  .nav-button-title.nav-button-title-2 {
+    font-size: clamp(14px, 4.8vw, 24px);
+    line-height: 1.25em;
+  }
+
+  /* Outro layout */
+  .outro-page { width: 100%; right: 0; }
+}
+
+/* ── RESPONSIVE: 767px ──────────────────────────────────── */
+@media screen and (max-width: 767px) {
+  .tile.strategy { gap: 24px; }
+}
+
+/* ── RESPONSIVE: 479px (phone — reduce tile padding) ──── */
+@media screen and (max-width: 479px) {
+  .tile { padding: 8px; }
+  .tile-title { font-size: 11px; }
+}
+
+/* ── LIGHTBOX (enlarged project card; morphs up from the tile) ───── */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+}
+.lightbox.open { pointer-events: auto; }
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 22, 18, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.lightbox.open .lightbox__backdrop { opacity: 1; }
+
+/* The card is fixed-positioned; JS sets top/left/width/height and animates them
+   from the tile's rect to a centered target (FLIP-style morph). */
+.lightbox__card {
+  position: fixed;
+  z-index: 1;
+}
+.lightbox__card .tile {
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--elevation-high);
+  cursor: default;
+}
+
+/* The added corners (close + copy) fade in once the card has expanded */
+.lightbox__card .pmcard__cluster--tr,
+.lightbox__card .pmcard__cluster--bl {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.lightbox__card.is-expanded .pmcard__cluster--tr,
+.lightbox__card.is-expanded .pmcard__cluster--bl {
+  opacity: 1;
+  transition: opacity 0.3s ease 0.2s;
+}
+
+/* Bottom-left copy block.
+   The cluster is absolutely positioned inside the media, so its % max-width is
+   relative to the card — we cap it at (card width − space for the open button)
+   so the copy can never run under the bottom-right button, and also cap it on
+   wide cards so it doesn't stretch too far. */
+.pmcard__cluster--bl { max-width: min(calc(100% - 116px), 460px); }
+.pmcard__cluster--bl .pmcard__pocket { min-width: 0; max-width: 100%; }
+.pmcard__pocket--copy { padding: var(--pm-moat) var(--pm-moat) 14px 14px; }
+.pmcard__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+}
+.pmcard__copy-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(16px, 1.7vw, 20px);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--palette-ink);
+}
+.pmcard__copy-body {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(12px, 1vw, 14px);
+  line-height: 1.5;
+  color: var(--palette-neutral700);
+}
+.pmcard__copy-body b { font-weight: 700; }
