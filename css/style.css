@@ -317,7 +317,7 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
 .tile.about   { --pm-media-bg: var(--tile-ink); }
 .tile.apps    { --pm-media-bg: var(--palette-neutral300); }
 .tile.blog    { --pm-media-bg: var(--tile-deep); }
-.tile.press   { --pm-media-bg: var(--tile-parchment); }
+.tile.press   { --pm-image: url("../assets/figma/gallery-3.jpg"); }
 .tile.privacy { --pm-media-bg: var(--tile-mid); }
 .tile.updates { --pm-media-bg: var(--palette-neutral400); }
 .tile.contact { --pm-media-bg: var(--tile-neutral); }
@@ -691,7 +691,7 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
   z-index: 2;
   background-color: transparent;
   color: var(--accent--tab);
-  cursor: pointer;
+  cursor: default;
   border-radius: 20px;
   border: none;
   flex: none;
@@ -893,12 +893,7 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
   position: absolute;
   inset: 0;
   background: rgba(255,255,255,0);
-  transition: background 0.3s;
   pointer-events: none;
-}
-
-.tile-menu-tile.nav-button:hover .nav-button-highlight {
-  background: rgba(255,255,255,0.05);
 }
 
 /* Enlarge animation for tile click */

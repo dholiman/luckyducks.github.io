@@ -339,8 +339,13 @@ function introScrollHandler(animated = true) {
       navButtonGridline.style.transition = 'initial';
     }
 
-    const baseSize = 'min(500px, calc(min(100vw, 100vh) - 64px))';
-    const size = `calc(${baseSize} - ${shrinkP} * calc(${baseSize} - var(--button-size)))`;
+    // Compute the shrink numerically. (A CSS calc of the form
+    // `number * calc(min(...))` is mis-evaluated to 0 by some engines, which
+    // collapsed the button to ~0px at the end of the scroll.)
+    const buttonSizePx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--button-size')) || 90;
+    const baseSizePx = Math.min(500, Math.min(window.innerWidth, window.innerHeight) - 64);
+    const sizePx = baseSizePx - shrinkP * (baseSizePx - buttonSizePx);
+    const size = `${sizePx}px`;
     navButton.style.width          = size;
     navButton.style.height         = size;
     navButtonGridline.style.width  = size;
