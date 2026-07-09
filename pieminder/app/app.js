@@ -545,7 +545,7 @@ const WALKTHROUGH_STEPS = [
     title: 'Ready to Bake',
     getBody: () => `Pull the dough out of the fridge and rest at room temperature for <strong>3–4 hours</strong> before baking — cold dough tears instead of stretches.
       <div class="bonus-tip bonus-tip--accordion" role="button" tabindex="0" aria-expanded="false" style="margin-top:1rem;">
-        <span class="bonus-tip__label"><img src="assets/icons/Lightbulb.png" alt="" class="tip-icon"> Bake it like pizzeria<span class="bonus-tip__toggle" aria-hidden="true">+</span></span>
+        <span class="bonus-tip__label"><img src="assets/icons/Lightbulb.png" alt="" class="tip-icon"> Bake it like a pizzeria<span class="bonus-tip__toggle" aria-hidden="true">+</span></span>
         <p class="bonus-tip__text">Preheat a baking steel in your oven at <strong>525°F</strong> for at least 45 minutes. Bake for 6-8 minutes. Try switching to broil in the last minute or 2 for a charred, pizzeria-style top.</p>
       </div>`,
   },
