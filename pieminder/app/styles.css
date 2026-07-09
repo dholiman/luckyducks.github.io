@@ -87,6 +87,12 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Clip horizontal overflow at the ROOT so the off-canvas walkthrough panel
+     (.walkthrough is position:fixed at translateX(100%), parked one viewport
+     to the right) can't extend the scrollable width. body's overflow-x:hidden
+     doesn't contain it because fixed elements are positioned against the
+     viewport, not body. `clip` (not `hidden`) avoids creating a scroll
+     container, so sticky/scroll behavior is unaffected. */
   overflow-x: clip;
 }
 

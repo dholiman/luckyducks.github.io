@@ -9,7 +9,7 @@
   --bg:             #EDE8E0;
   --text-primary:   #2A1F10;
   --text-secondary: #6B5840;
-  --text-tertiary:  #7A6448;
+  --text-tertiary:  #645037;
   --text-accent:    #9B3600;
 
   --accent-a:        #C44D0C;
@@ -1000,4 +1000,68 @@ a:focus-visible {
 .hero-em-reveal {
   display: inline-block;
   animation: em-reveal 600ms cubic-bezier(0.22, 1, 0.36, 1) 380ms both;
+}
+
+/* ── Features intro cross-link ── */
+.features-intro-link {
+  margin-top: var(--s-3);
+  font-weight: 600;
+}
+.features-intro-link a {
+  color: var(--text-accent);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-accent) 35%, transparent);
+  padding-bottom: 1px;
+  transition: border-color 160ms var(--ease-out);
+}
+.features-intro-link a:hover { border-bottom-color: var(--text-accent); }
+
+/* ── About + Privacy band ── */
+.about-band {
+  padding: var(--s-8) 0;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--s-7);
+  align-items: start;
+}
+.about-h2 {
+  margin: var(--s-2) 0 var(--s-4);
+}
+.about-story p {
+  color: var(--text-secondary);
+  max-width: 60ch;
+  line-height: 1.7;
+}
+.about-signoff {
+  margin-top: var(--s-3);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.privacy-card {
+  background: color-mix(in srgb, var(--accent-b) 8%, var(--bg));
+  border: 1px solid color-mix(in srgb, var(--accent-a) 20%, transparent);
+  border-radius: var(--r-md);
+  padding: var(--s-5);
+  box-shadow: var(--shadow-raised);
+}
+.privacy-card h3 {
+  margin: 0 0 var(--s-2);
+  color: var(--text-primary);
+}
+.privacy-card p {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 var(--s-3);
+}
+.privacy-card-link {
+  font-weight: 600;
+  color: var(--text-accent);
+  text-decoration: none;
+}
+.privacy-card-link:hover { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  .about-grid { grid-template-columns: 1fr; gap: var(--s-5); }
 }

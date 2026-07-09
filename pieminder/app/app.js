@@ -10,12 +10,10 @@ const BASE_PIZZA_SIZE = 16;
 const BASE_QUANTITY   = 6;
 const BASE_THICKNESS  = 2.11;  // Regular
 
-// Calibrated base flour (regular): gives 480g/ball at 6×16" regular
+// Calibrated base flour (regular): gives ~480g/ball at 6×16" regular
 const BASE_FLOUR_REGULAR = 1509.797685 * (480 / 425);
 // Calibrated base flour (gluten-free)
 const BASE_FLOUR_GF      = 333 * 6;
-// Dough factor: total dough ÷ flour at baseline
-const DOUGH_FACTOR       = 2550 / 1509.797685;
 
 // Numeric thickness values for each discrete option
 const THICKNESS_VALUES = {
@@ -41,7 +39,7 @@ const state = {
   size:        12,    // inches
   thickness:   'regular',
   hydration:   65,    // regular: 60–70%, default 65
-  gfHydration: 75,    // GF:      70–80%, default 75
+  gfHydration: 75,    // default 75
 };
 
 // ── Persistence ───────────────────────────────────────────────
@@ -184,7 +182,7 @@ function calculate() {
   const sugar = flour * SUGAR_PCT;
   const oil   = flour * OIL_PCT;
 
-  const totalDough = flour * DOUGH_FACTOR;
+  const totalDough = roundTen(flour) + roundTen(water) + roundYeast(yeast) + roundWhole(salt) + roundWhole(oil) + roundWhole(sugar);
   const ballWeight = totalDough / quantity;
 
   return { totalDough, ballWeight, flour, water, yeast, salt, oil, sugar };

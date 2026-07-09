@@ -5,22 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts." />
   <meta name="theme-color" content="#EDE8E0" />
-  <meta name="apple-itunes-app" content="app-id=6777173101" />
   <!-- Security -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <!-- Open Graph -->
   <meta property="og:type"        content="website" />
-  <meta property="og:url"         content="https://luckyducks.app/pieminder/" />
   <meta property="og:title"       content="PieMinder Pro — Pizza Dough Calculator" />
-  <meta property="og:description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts and a step-by-step walkthrough. No ads or premium plans." />
-  <meta property="og:image"       content="https://luckyducks.app/pieminder/assets/og-image.png" />
-  <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="PieMinder Pro — Pizza Dough Calculator" />
-  <meta name="twitter:description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts and a step-by-step walkthrough. No ads or premium plans." />
-  <meta name="twitter:image"      content="https://luckyducks.app/pieminder/assets/og-image.png" />
-  
+  <meta property="og:description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts." />
+  <meta property="og:image"       content="https://luckyducks.app/pieminder/app/assets/web/og-image.png" />
+  <meta property="og:url"         content="https://luckyducks.app/pieminder/app/" />
   <title>PieMinder — Pizza Dough Calculator</title>
+  <link rel="canonical" href="https://luckyducks.app/pieminder/app/" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/web/favicon.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/web/favicon-16.png" />
   <link rel="apple-touch-icon"    href="assets/web/apple-touch-icon.png" />
@@ -29,6 +24,22 @@
   <!-- Fraunces (display serif, variable axes) + Inter (body) — matches the iOS app + marketing site. -->
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css?v=59" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "@id": "https://luckyducks.app/pieminder/app/#webapp",
+    "name": "PieMinder — Pizza Dough Calculator",
+    "url": "https://luckyducks.app/pieminder/app/",
+    "description": "Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts.",
+    "applicationCategory": "UtilitiesApplication",
+    "browserRequirements": "Requires JavaScript",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "isRelatedTo": { "@id": "https://luckyducks.app/pieminder/#app" },
+    "author": { "@type": "Person", "@id": "https://luckyducks.app/#dakota-holiman", "name": "Dakota Holiman" }
+  }
+  </script>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -38,7 +49,7 @@
     <!-- ── Header ── -->
     <header class="header" role="banner">
       <a href="../index.html" aria-label="home"  style="text-decoration: none;">
-        <div class="header-logo" aria-hidden="true"><img src="assets/icons/Pizza.png" alt="" width="56" height="56"></div>
+        <div class="header-logo" aria-hidden="true"><img src="assets/web/pizza-112.png" alt="" width="56" height="56" decoding="async"></div>
         <h1 class="header-title" style="width: 900px;">&#160;PieMinder <span class="header-title-accent" style="text-decoration: none;">Pro&#160;</span></h1>
         <p class="header-tagline">Home pizza dough, simplified</p>
       </a>

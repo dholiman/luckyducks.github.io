@@ -17,6 +17,7 @@ Built and maintained by Dakota Holiman.
 | `privacy.html` | Privacy Policy — public URL required for App Store submission |
 | `support.html` | Support page + FAQ — public URL required for App Store submission |
 | `styles.css` | Single shared stylesheet for all three pages |
+| `app/` | The calculator web app — deploys to `/pieminder/app/` |
 | `apple-app-site-association` | Universal Links config — must be served at `/.well-known/apple-app-site-association` on the deployed domain |
 | `assets/` | Images, OG card, favicons, fonts |
 | `assets/fonts/` | Self-hosted display font drop zone (see `assets/fonts/README.md`) |
@@ -27,17 +28,22 @@ Built and maintained by Dakota Holiman.
 
 ## Local preview
 
-Static site, no build:
+Static site, no build. The `pieminder/` folder is the site root (maps to
+`/pieminder/` on the live domain); the calculator lives in `pieminder/app/`
+(maps to `/pieminder/app/`).
+
+To reproduce the real `/pieminder/` URL prefix locally, serve the parent
+`Web/` directory:
 
 ```bash
-cd Web/Landing
+cd Web
 python3 -m http.server 8000
-# then open http://localhost:8000
+# then open http://localhost:8000/pieminder/
 ```
 
-> **Note:** the "Use on the web" nav CTA links to `../App/index.html`. For
-> that link to resolve locally, serve from the parent `Web/` directory
-> instead (`python3 -m http.server` one level up).
+Internal links are clean relative paths (`app/index.html` from the landing
+pages, `../index.html` back from the app), so they resolve identically in
+local preview and on the deployed `/pieminder/` path.
 
 ---
 
@@ -45,10 +51,10 @@ python3 -m http.server 8000
 
 Placeholders that **block App Store submission** if not resolved first:
 
-- [ ] Replace `idXXXXXXXXX` (3× in `index.html`, 1× in `privacy.html`, 1× in `support.html`) with the real App Store ID
+- [x] ~~Replace `idXXXXXXXXX` (3× in `index.html`, 1× in `privacy.html`, 1× in `support.html`) with the real App Store ID~~ — done, App Store ID is `id6777173101`
 - [ ] Replace `hello@example.com` (in `privacy.html` and `support.html`) with the real contact email
 - [ ] Replace `XXXXXXXXXX` in `apple-app-site-association` with the 10-character Apple Developer Team ID
-- [ ] Decide on production domain — many absolute URLs (`og:url`, AASA path matchers, web-app link target) depend on it
+- [x] ~~Decide on production domain — many absolute URLs (`og:url`, AASA path matchers, web-app link target) depend on it~~ — done, hosted at `https://luckyducks.app/pieminder/`
 - [ ] Confirm `assets/fonts/` either has the licensed Gelica files OR the CSS has been reverted to Google Fonts Fraunces (current state: Fraunces via CDN, no self-hosted fonts in use)
 
 ---
@@ -124,8 +130,8 @@ PieMinder_Global/
 ├── APP-STORE-METADATA.md     ← submission metadata (single source of truth)
 ├── iOS/                      ← Xcode project + Privacy Manifest + setup doc
 └── Web/
-    ├── App/                  ← the calculator web app (links here from nav)
-    └── Landing/              ← YOU ARE HERE
+    └── pieminder/            ← site root, deploys to /pieminder/  (YOU ARE HERE)
+        └── app/              ← calculator web app, deploys to /pieminder/app/
 ```
 
 If you change the bundle ID, the App Store URL, or the contact email, do

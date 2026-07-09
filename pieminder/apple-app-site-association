@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["GVSED3SNPM.com.luckyducks.pieminder"],
+        "components": [
+          {
+            "/": "/pieminder/*",
+            "comment": "Match any path under /pieminder/ — handles shared recipe links"
+          }
+        ]
+      }
+    ]
+  }
+}

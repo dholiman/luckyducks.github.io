@@ -6,26 +6,55 @@
   <meta name="description" content="PieMinder — the pizza dough calculator for home bakers. Real-time ingredient amounts, a guided walkthrough, and Dynamic Island proofing timers." />
   <meta name="theme-color" content="#EDE8E0" />
 
+  <!-- Apple Smart App Banner — shows "Open" if the app is installed, "Get"
+       (linking to the App Store) if not. Appears on iOS Safari only. -->
+  <meta name="apple-itunes-app" content="app-id=6777173101" />
+
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://luckyducks.app/pieminder/" />
-  <meta property="og:title"       content="PieMinder Pro — Pizza Dough Calculator" />
-  <meta property="og:description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts and a step-by-step walkthrough. No ads or premium plans." />
+  <meta property="og:title"       content="PieMinder Pro — Pizza Dough Calculator, Simplified" />
+  <meta property="og:description" content="Real-time pizza dough math. A guided walkthrough. Built-in proofing timers in the Dynamic Island. No ads or premium plans." />
   <meta property="og:image"       content="https://luckyducks.app/pieminder/assets/og-image.png" />
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card"       content="summary_large_image" />
-  <meta name="twitter:title"      content="PieMinder Pro — Pizza Dough Calculator" />
-  <meta name="twitter:description" content="Making homemade pizza dough easy and repeatable. Enter your pizza size, quantity, and thickness to get exact ingredient amounts and a step-by-step walkthrough. No ads or premium plans." />
+  <meta name="twitter:title"      content="PieMinder Pro — Pizza Dough Calculator, Simplified" />
+  <meta name="twitter:description" content="Real-time pizza dough math. A guided walkthrough. Built-in proofing timers in the Dynamic Island." />
   <meta name="twitter:image"      content="https://luckyducks.app/pieminder/assets/og-image.png" />
 
-  <title>PieMinder Pro — Pizza Dough, Beautified</title>
+  <title>PieMinder Pro — Pizza Dough Calculator, Simplified</title>
+
+  <link rel="canonical" href="https://luckyducks.app/pieminder/" />
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
-  <link rel="apple-touch-icon" href="assets/pizza.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <link rel="preload" as="image" href="assets/hero-strip.webp" type="image/webp" fetchpriority="high" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://luckyducks.app/pieminder/#app",
+    "name": "PieMinder Pro",
+    "url": "https://luckyducks.app/pieminder/",
+    "description": "PieMinder is a pizza dough calculator for home bakers. Real-time ingredient amounts, a guided step-by-step walkthrough, and Dynamic Island proofing timers.",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "iOS",
+    "image": "https://luckyducks.app/pieminder/assets/og-image.png",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "downloadUrl": "https://apps.apple.com/app/id6777173101",
+    "installUrl": "https://apps.apple.com/app/id6777173101",
+    "author": { "@type": "Person", "@id": "https://luckyducks.app/#dakota-holiman", "name": "Dakota Holiman" },
+    "creator": { "@id": "https://luckyducks.app/#dakota-holiman" }
+  }
+  </script>
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -33,11 +62,11 @@
   <!-- ── Floating pill nav ── -->
   <nav class="floating-nav" id="nav" aria-label="Site navigation">
     <a class="nav-brand" href="index.html">
-      <span class="nav-logo" aria-hidden="true"><img src="assets/pizza.png" alt="" /></span>
+      <span class="nav-logo" aria-hidden="true"><img src="assets/pizza-64.png" alt="" width="32" height="32" /></span>
       <span class="nav-brand-name">PieMinder <span class="brand-accent">Pro</span></span>
     </a>
     <div class="nav-actions">
-      <a class="nav-btn-web" href="/pieminder/app/index.html">Use on the web</a>
+      <a class="nav-btn-web" href="app/index.html">Open Web App</a>
       <a class="nav-btn-app" href="https://apps.apple.com/app/id6777173101" aria-label="Get PieMinder on the App Store">Get the App →</a>
     </div>
   </nav>
@@ -50,6 +79,7 @@
     <section class="hero">
       <div class="wrap">
         <div class="hero-text">
+          <span class="eyebrow rise d1">Pizza Dough Calculator · iOS &amp; Web</span>
           <h1 class="display hero-display rise d2">
             Home pizza dough, <em class="hero-em-reveal">simplified.</em>
           </h1>
@@ -59,9 +89,9 @@
             <strong class="hero-lead-accent">no ads or premium plans.</strong>
           </p>
           <div class="cta-row rise d4">
-            <a class="btn-web" href="/pieminder/app/index.html">
-              <span class="btn-web-label">Use on the web</span>
-              <span class="btn-web-sub">with limited features</span>
+            <a class="btn-web" href="app/index.html">
+              <span class="btn-web-label">Use the web app</span>
+              <span class="btn-web-sub">right in your browser</span>
             </a>
             <a class="btn-appstore" href="https://apps.apple.com/app/id6777173101" aria-label="Download PieMinder on the App Store">
               <svg class="btn-appstore-icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false" fill="currentColor">
@@ -77,7 +107,10 @@
       </div>
 
       <div class="hero-strip">
-        <img src="assets/hero-strip.png" alt="PieMinder app screens" />
+        <picture>
+          <source srcset="assets/hero-strip.webp" type="image/webp" />
+          <img src="assets/hero-strip.png" alt="PieMinder app screens" width="2560" height="744" fetchpriority="high" decoding="async" />
+        </picture>
       </div>
     </section>
 
@@ -102,7 +135,10 @@
             <p>Adjust pizza count, size, thickness, hydration, and gluten preference. Flour, water, salt, yeast, olive oil, and sugar amounts update instantly (in both grams and ounces).</p>
           </div>
           <div class="feature-phones">
-            <img class="feature-img" src="assets/feature-01.png" alt="PieMinder calculator and ingredient screens" />
+            <picture>
+              <source srcset="assets/feature-01.webp" type="image/webp" />
+              <img class="feature-img" src="assets/feature-01.png" alt="PieMinder calculator and ingredient screens" width="1240" height="1296" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </article>
 
@@ -117,7 +153,10 @@
             <p>All-in-one screen or guided walkthrough, from chilling water to baking. Each step includes your calculated amounts, so you're free from the cross-reference nightmares.</p>
           </div>
           <div class="feature-phones">
-            <img class="feature-img" src="assets/feature-02.png" alt="PieMinder instructions and walkthrough screens" />
+            <picture>
+              <source srcset="assets/feature-02.webp" type="image/webp" />
+              <img class="feature-img" src="assets/feature-02.png" alt="PieMinder instructions and walkthrough screens" width="1240" height="1296" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </article>
 
@@ -131,12 +170,34 @@
             <p>Mix and rest timers live in your Dynamic Island and on the lock screen. Time-sensitive notifications fire the moment your dough is ready, even with the app closed or after a 3-hour rest.</p>
           </div>
           <div class="feature-phones">
-            <img class="feature-img" src="assets/feature-03.png" alt="PieMinder timer and Dynamic Island screens" />
+            <picture>
+              <source srcset="assets/feature-03.webp" type="image/webp" />
+              <img class="feature-img" src="assets/feature-03.png" alt="PieMinder timer and Dynamic Island screens" width="1240" height="1296" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </article>
 
       </div>
     </section>
+
+    <!-- ╔══════════════════════════════════════════════════════════╗
+         ║  ABOUT + PRIVACY                                          ║
+         ╚══════════════════════════════════════════════════════════╝ 
+    <section class="about-band" id="about" aria-label="About PieMinder">
+      <div class="wrap about-grid">
+        <div class="about-story">
+          <span class="eyebrow">Why I built it</span>
+          <h2 class="display about-h2">A calculator I actually wanted to use.</h2>
+          <p>I'm Dakota, a home cook who got tired of scaling pizza dough by hand and re-doing baker's percentages every time I wanted a different number of pizzas. I built PieMinder so the math just happens — set your pizzas, size, and thickness, and every ingredient updates instantly. It started as a tool for my own kitchen, so there was never a reason to add ads, tracking, or a paywall. It's free because I wanted friends and family to use it too. If it makes your pizza night a little easier, that's the whole point.</p>
+          <p class="about-signoff">— Dakota Holiman</p>
+        </div>
+        <aside class="privacy-card" aria-label="Privacy">
+          <h3>Private by design</h3>
+          <p>No ads. No tracking. No analytics. No data collection. Your recipes and settings stay on your device — nothing is ever sent to a server.</p>
+          <a class="privacy-card-link" href="privacy.html">Read the privacy policy →</a>
+        </aside>
+      </div>
+    </section>-->
 
     <!-- ╔══════════════════════════════════════════════════════════╗
          ║  CLOSING CTA                                              ║
@@ -149,9 +210,9 @@
           no features hidden behind it.
         </p>
         <div class="cta-row closing-cta-row">
-          <a class="btn-web" href="/pieminder/app/index.html">
-            <span class="btn-web-label">Use on the web</span>
-            <span class="btn-web-sub">with limited features</span>
+          <a class="btn-web" href="app/index.html">
+            <span class="btn-web-label">Use the web app</span>
+            <span class="btn-web-sub">right in your browser</span>
           </a>
           <a class="btn-appstore" href="https://apps.apple.com/app/id6777173101" aria-label="Download PieMinder on the App Store">
             <svg class="btn-appstore-icon" viewBox="0 0 384 512" aria-hidden="true" focusable="false" fill="currentColor">
