@@ -948,10 +948,20 @@ a:focus-visible {
    ────────────────────────────────────────────────────────────── */
 @keyframes rise {
   from { opacity: 0; transform: translateY(14px); filter: blur(4px); }
-  to   { opacity: 1; transform: translateY(0);    filter: blur(0);   }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.rise { animation: rise 720ms var(--ease-spring) both; }
+/* fill-mode is `backwards`, NOT `both`. `both` includes forwards-fill, which
+   pins the animation's end state after it finishes — and the end state left a
+   residual `filter: blur(0px)` on the element. ANY resting filter (even a zero
+   blur) makes an element clip its descendants' overflow to its border box,
+   which sliced the App Store button's drop shadow and left white wedges at the
+   button corners on Safari (Safari enforces filter-region clipping strictly;
+   Chromium hides it). The animation's end state is identical to the element's
+   natural resting look, so forwards-fill was pure downside. `backwards` still
+   holds each element hidden through its stagger delay and plays the blur-in,
+   then reverts to a genuinely filter-free resting state — shadows unclipped. */
+.rise { animation: rise 720ms var(--ease-spring) backwards; }
 .rise.d1 { animation-delay:  80ms; }
 .rise.d2 { animation-delay: 160ms; }
 .rise.d3 { animation-delay:  910ms; }
