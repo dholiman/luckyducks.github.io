@@ -440,6 +440,20 @@ a:focus-visible {
   gap: var(--s-3);
 }
 
+/* iOS/mobile-WebKit fix. The .rise entrance animation promotes this row to
+   its own compositing layer, and mobile WebKit clips a composited element's
+   DESCENDANT box-shadows to that element's border box. The App Store button's
+   neumorphic shadow spills past the row, so it was getting sliced (cut-off
+   bottom + white wedges at the button corners) on every iOS browser (all
+   WebKit) while desktop and the non-animated closing-CTA row rendered fine.
+   Growing the border box by the shadow's spread (~25px) contains the shadow
+   inside the clip region; the matching negative margin cancels the padding so
+   the buttons don't actually move. Net-zero layout, deterministic fix. */
+.cta-row.rise {
+  padding: 28px;
+  margin: -28px;
+}
+
 /* "Use on the web" — neumorphic box, two-line */
 .btn-web {
   display: inline-flex;
