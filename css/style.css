@@ -116,6 +116,10 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
   --elevation-amber-glow:  0 4px 16px  rgba(255, 149, 0, 0.28);
   --elevation-soft-border: 1px solid   rgba(26, 22, 18, 0.06);
 
+  /* Shared card shadow — used by every content tile AND the center tile, in all
+     states. Single source of truth so they always match. */
+  --card-shadow: 0 10px 24px rgba(26, 22, 18, 0.10), 0 2px 5px rgba(26, 22, 18, 0.08);
+
   /* ── Tile palette — 8 distinct warm-family colors ── */
   --tile-ink:       #1A1612;
   --tile-amber:     #FF9500;
@@ -165,15 +169,6 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
   z-index: 2;
   position: absolute;
   inset: 0%;
-}
-
-/* One unified drop-shadow for the whole card group: it shadows the combined
-   silhouette and composites beneath every card body, so no card's shadow ever
-   lands on a neighbour — they read as one elevated plane. */
-.nav-wrapper:not(.nav-wrapper-gridlines) {
-  filter:
-    drop-shadow(0 10px 24px rgba(26, 22, 18, 0.20))
-    drop-shadow(0 2px 5px rgba(26, 22, 18, 0.16));
 }
 
 .nav-wrapper.nav-wrapper-gridlines {
@@ -298,10 +293,14 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
   text-decoration: none;
   display: block;
   cursor: pointer;
-  transform-style: preserve-3d;
-  will-change: transform;
-  /* Shadow comes entirely from the container's unified drop-shadow (co-planar,
-     never lands on a neighbor). No per-tile or hover shadow. */
+  /* Per-tile box-shadow (not a container filter): it's part of the tile's own
+     rendering, so it transforms WITH the card during the tilt and works in
+     Safari. A container `filter: drop-shadow` gave a perfect single-plane
+     composite but Safari drops it whenever a descendant has a 3D transform
+     (the tilt) — shadows vanished on hover and the screen flashed.
+     NOTE: no `transform-style: preserve-3d` / `will-change` — the tilt's 3D
+     comes from perspective() inline in the transform, so neither is needed. */
+  box-shadow: var(--card-shadow);
 }
 .tile *, .tile *::before, .tile *::after { box-sizing: border-box; }
 
@@ -581,32 +580,6 @@ h1, h2, h3, h4, .h1, .h2, .h3, .h4, blockquote, q {
   transition: opacity var(--tile-transition);
 }
 .tile.imagery:hover .imagery-landscape { opacity: 0.8; }
-
-/* Motion tile – bezier tangent */
-.motion-curve {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-}
-.motion-curve path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
-  opacity: 0.4;
-}
-.motion-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  border: 1.5px solid currentColor;
-  position: absolute;
-  transition: all 0.5s cubic-bezier(.34,1.56,.64,1);
-}
-.motion-dot-1 { left: 15%; top: 70%; }
-.motion-dot-2 { right: 15%; bottom: 70%; }
-.tile.motion:hover .motion-dot-1 { left: 10%; top: 80%; }
-.tile.motion:hover .motion-dot-2 { right: 10%; bottom: 80%; }
 
 /* ── GRIDLINE TILES ──────────────────────────────────────── */
 .tile-line {
