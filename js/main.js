@@ -37,7 +37,7 @@ let cardRevealed = false; // becomes true once the neutral background + shadow f
 
 // Main-tile (nav button) intro colors
 const CARD_BG     = '#F5F3EE';                          // neutral background revealed at corner-move
-const CARD_SHADOW = '0 10px 24px rgba(26, 22, 18, 0.20), 0 2px 5px rgba(26, 22, 18, 0.16)'; // matches the grid plane's drop-shadow
+const CARD_SHADOW = 'var(--card-shadow)'; // shared token in style.css — matches the content tiles in every state
 
 // Tile scatter/assemble directions (desktop & mobile)
 const desktopTransformations = [
@@ -91,6 +91,41 @@ function prepareLogoPathForLoadIn() {
   });
 }
 
+// Build the card-outline stroke path in pixel-space from the button's measured
+// size + border-radius (the SVG has no viewBox, so coords are 1:1 with the box).
+// The state-1 button size is applied inside a rAF (throttled scroll handler), so
+// on load this can run before the button is sized — measuring a collapsed ~64px
+// box and baking a tiny square in the corner. Retry across a few frames until the
+// button has actually grown, then build. Also called on resize to stay correct.
+function buildCardOutline(retries = 8) {
+  const cardOutline = document.querySelector('.card-outline');
+  const cardOutlinePath = cardOutline && cardOutline.querySelector('path');
+  if (!cardOutlinePath) return;
+
+  const rect = navButton.getBoundingClientRect();
+  // Not sized yet (still collapsed near --button-size) → wait a frame and retry.
+  if (rect.width < 120 && retries > 0) {
+    requestAnimationFrame(() => buildCardOutline(retries - 1));
+    return;
+  }
+
+  const sw = 1.5;                          // stroke width
+  const inset = sw / 2;                     // keep the stroke inside the card edge
+  const radius = parseFloat(getComputedStyle(navButton).borderTopLeftRadius) || 20;
+  const r = Math.max(0, radius - inset);
+  const x0 = inset, y0 = inset;
+  const x1 = rect.width - inset, y1 = rect.height - inset;
+  const d =
+    `M${x0 + r},${y0} H${x1 - r} A${r},${r} 0 0 1 ${x1},${y0 + r}` +
+    ` V${y1 - r} A${r},${r} 0 0 1 ${x1 - r},${y1}` +
+    ` H${x0 + r} A${r},${r} 0 0 1 ${x0},${y1 - r}` +
+    ` V${y0 + r} A${r},${r} 0 0 1 ${x0 + r},${y0} Z`;
+  cardOutlinePath.setAttribute('d', d);
+  const len = cardOutlinePath.getTotalLength();
+  cardOutlinePath.style.strokeDasharray = String(len);
+  cardOutlinePath.style.strokeDashoffset = String(len);
+}
+
 function animateInHome() {
   if (alreadyAnimatedIn) return;
   alreadyAnimatedIn = true;
@@ -101,28 +136,8 @@ function animateInHome() {
   navButton.style.background = 'transparent';
   navButton.style.boxShadow = 'none';
 
-  // Build the outline path in pixel-space from the card's measured size + border-radius
-  // so the stroke traces the card's true edge. Dash = its perimeter → one continuous line.
-  const cardOutline = document.querySelector('.card-outline');
-  const cardOutlinePath = cardOutline && cardOutline.querySelector('path');
-  if (cardOutlinePath) {
-    const rect = navButton.getBoundingClientRect();
-    const sw = 1.5;                          // stroke width
-    const inset = sw / 2;                     // keep the stroke inside the card edge
-    const radius = parseFloat(getComputedStyle(navButton).borderTopLeftRadius) || 20;
-    const r = Math.max(0, radius - inset);
-    const x0 = inset, y0 = inset;
-    const x1 = rect.width - inset, y1 = rect.height - inset;
-    const d =
-      `M${x0 + r},${y0} H${x1 - r} A${r},${r} 0 0 1 ${x1},${y0 + r}` +
-      ` V${y1 - r} A${r},${r} 0 0 1 ${x1 - r},${y1}` +
-      ` H${x0 + r} A${r},${r} 0 0 1 ${x0},${y1 - r}` +
-      ` V${y0 + r} A${r},${r} 0 0 1 ${x0 + r},${y0} Z`;
-    cardOutlinePath.setAttribute('d', d);
-    const len = cardOutlinePath.getTotalLength();
-    cardOutlinePath.style.strokeDasharray = String(len);
-    cardOutlinePath.style.strokeDashoffset = String(len);
-  }
+  // Build the outline path once the button has reached its full state-1 size.
+  buildCardOutline();
 
   // Extend gridlines from menu center outward
   const menuGridlinesV = document.querySelectorAll('.menu .tile-line.nav-l, .menu .tile-line.nav-r');
@@ -628,7 +643,12 @@ document.addEventListener('DOMContentLoaded', animateInHome);
 
 handleIntroResize(false);
 window.addEventListener('load', () => handleIntroResize(false));
-window.addEventListener('resize', () => handleIntroResize(false));
+window.addEventListener('resize', () => {
+  handleIntroResize(false);
+  // Re-fit the outline to the new button size while it's still in play
+  // (deferred a frame so the button has resized first).
+  if (!logoAtCorner) requestAnimationFrame(() => buildCardOutline());
+});
 window.addEventListener('scroll', () => handleIntroScroll(true), { passive: true });
 
 // Force GPU layer
